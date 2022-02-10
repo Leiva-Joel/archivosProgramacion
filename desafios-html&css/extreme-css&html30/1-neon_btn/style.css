@@ -1,0 +1,64 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: sans-serif;
+  background-color: #030824;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.buttons__btn{
+  display: inline-block;
+  text-decoration: none;
+  margin: 10em 4em;
+  background-color: transparent;
+  padding: 20px;
+  transition: all .4s ease;
+  text-transform: uppercase;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  position: relative;
+}
+
+.buttons__btn--green{
+  color: lime;
+}
+
+.buttons__btn--pink{
+  color: #e72764;
+}
+
+.buttons__btn--blue{
+  color: #03e9f4;
+}
+
+.buttons__btn--green:hover{
+  background-color: lime;
+  box-shadow: 0 0 200px lime;
+  color: #030824;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.buttons__btn--pink:hover{
+  background-color: #e72764;
+  box-shadow: 0 0 200px #e72764;
+  color: #030824;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+  }
+  
+  .buttons__btn--blue:hover{
+  background-color: #03e9f4;
+  box-shadow: 0 0 200px #03e9f4;
+  color: #030824;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}

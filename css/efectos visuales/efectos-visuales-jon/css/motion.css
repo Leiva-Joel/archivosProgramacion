@@ -1,0 +1,843 @@
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+.box {
+  border: thick solid #000;
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+}
+
+.card {
+  border: thick solid #000;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+  width: 600px;
+  height: 400px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 50%;
+}
+
+/*
+ Transiciones
+  transition-property
+  transition-duration
+  transition-timing-function: none | linear | ease | ease-in | ease-out | ease-in-out | steps 
+  transition-delay
+  transition: property duration timimg-function delay
+ */
+
+.transitions .box {
+  background-color: magenta;
+  transition-property: background-color;
+  transition-duration: 500ms;
+  transition-timing-function: ease;
+  transition-delay: 0.5s;
+  transition: border-color 2s linear 1s;
+  transition: all 1s ease-in-out 250ms;
+}
+
+.transitions .box:hover {
+  background-color: cyan;
+  border-color: red;
+  border-radius: 2rem;
+  border-style: dashed;
+}
+
+.transitions .card {
+  transition: opacity 1s ease-out, border-color 3s steps(3),
+    filter 2s ease-in 1s, box-shadow 1.5s linear 2s;
+}
+
+.transitions .card:hover {
+  opacity: 0.75;
+  border: thick solid orchid;
+  filter: blur(0.25rem);
+  box-shadow: 1rem 1rem 2rem.5rem #000;
+}
+
+.transitions .card img {
+  transition: object-position 2s ease-in-out 3s;
+}
+
+.transitions .card img:hover {
+  object-position: 100% 50%;
+}
+
+.transform-2d img {
+  transition: transform 2s ease-in-out;
+}
+
+/*transform-translate sirve para mover la imagen de su lugar original 
+
+  transform-scale: sirve para agrandar o achicar la imagen, es decir escalarla, si ponemos un valor negativo la imagen se da vuelta para el sentido contrario
+
+  transform-rotate: gira la imagen como si fuera un celular. X la gira de arriba para abajo, Y la gira de izquierda a derecha
+  
+  transform-skew: cesga la imagen para que una parte se vea menos que otra. En X la parte de arriba se va a la derecha y la parte de abajo a la izquierda, y con un valor negativo al reves. En Y la imagen se inclina, la parte de la derecha se va hacia abajo y la parte de la izquierda sube. Con valores negativos seria lo mismo pero alreves
+*/
+
+.transform-2d img:hover {
+  transform: none;
+  transform: translateX(4rem);
+  transform: translateY(4rem);
+  transform: translateY(-4rem);
+  transform: translateZ(3rem);
+  transform: translate(-4rem, 4rem);
+  transform: translate(-50%, -50%);
+  transform: translate(-50%, 100px);
+  transform: scaleX(2);
+  transform: scaleY(0.5);
+  transform: scaleZ(1.5);
+  transform: scale(1.5, 1.5);
+  transform: scale(-1, -1);
+  transform: rotateX(90deg);
+  transform: rotateX(60deg);
+  transform: rotateY(90deg);
+  transform: rotateY(60deg);
+  transform: rotatez(60deg);
+  transform: rotate(-60deg);
+  transform: skewX(20deg);
+  transform: skewX(-20deg);
+  transform: skewY(20deg);
+  transform: skewY(-20deg);
+  transform: skew(-20deg, -20deg);
+  /* transform: matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY()) */
+  /* transform: matrix(1,2,2,1,20,10); */
+  transform: translate(25%, -50%) rotate(240deg) skew(10deg, 20deg)
+    scale(-0.5, -0.5);
+}
+
+/* -------------------Transformaciones 3D-------------------*/
+
+.transform-3d {
+  perspective: 10rem;
+  /* Es la longitud que hay entre la pantalla y el contenido, mientras mas distancia hay mas lento va a ser la transformacion, y si es menos va a ser mas rapida. Es decir es la distancia que hay entre nosotros y el contenido */
+}
+
+.transform-3d img {
+  transition: transform 2s ease-in-out;
+}
+
+.transform-3d img:hover {
+  /* transform: translatez te acerca o te aleja el contenido, mientras mas px, rem, etc le apliquemos mas se va a acercar y si es menos se va a acercar menos. Es como tener un celular y con perspective definimos a que distancia va a estar de nosotros y con el translate decimos cuanto queremos que se acerque o se aleje(con valores negativos)
+  
+  transform: translate3d el priver valor para x el segundo para y el terecero para z, se comporta igual que el translate() pero segun lo que pongas en z se va a alejar o acercar
+
+  transform: scale z solo funciona cuando nuestra imagen tiene volumen
+
+  transform: scale3d el primer valor es para x despues para Y el tercero para z pero si no tenemos una imagen con volumen se va a comportar como el scale2d
+
+  transform: rotatex hace que la imagen se incline para abajo como si la estuviera empujando y se me caiga
+
+  transform: rotatey hace que la imagen gire hacia la derecha o la izquierda, como si agarra un celular y lo rote de izquierda a derecha para que en un punto se vea la pantalla y en otro la funda
+
+  transform: translate-skew NO EXISTE EN TRANSFORMACIONES 3D!!
+  */
+  transform: translateZ(-4rem);
+  transform: perspective(1000px) translateZ(4rem);
+  transform: perspective(100rem) translateZ(4rem);
+  transform: perspective(10rem) translateZ(4rem);
+  transform: perspective(10rem) translateZ(-4rem);
+  transform: translateZ(-4rem);
+  transform: translate3d(2rem, 50%, -3rem);
+  transform: scaleZ(1.5);
+  transform: scale3d(2, 0.5, 3);
+  transform: rotateX(60deg);
+  transform: rotateX(90deg);
+  transform: rotateX(-60deg);
+  transform: rotateY(60deg);
+  transform: rotatey(-90deg);
+  transform: rotate3d(1, 1, 1, 45deg);
+  transform: rotate3d(-1, 2.5, -2, 60deg);
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 6, 0, 0, 0, 1, 0, 50, 100, 0, 1.1);
+  transform: rotate3d(-1, 2.5, -2, 60deg) translate3d(2rem, 50%, -3rem)
+    scale3d(2, 0.5, 3);
+}
+
+.transform-origin img {
+  transition: transform 2s ease-in-out;
+  /*transform-origin: x y z; 
+  si solo especificamos el primer valor el segundo lo va a tomar en automatico, es decir que en el eje y va a empezar en el 50%
+*/
+  transform-origin: 50% 50% 0;
+  transform-origin: 0 0;
+  transform-origin: top left;
+  transform-origin: top right;
+  transform-origin: bottom center;
+  transform-origin: -2rem;
+  transform-origin: 2rem, 75%;
+  transform-origin: 30%, 90%;
+}
+
+.transform-origin img:hover {
+  transform: rotate(360deg);
+}
+
+.flip-card-1,
+.flip-card-2 {
+  border: thick solid #000;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+  width: 600px;
+  height: 400px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 1s ease-in-out;
+  perspective: 10rem;
+  transform-style: preserve-3d;
+}
+
+.flip-card-1 img,
+.flip-card-2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 50%;
+}
+
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-front {
+  transform: rotateY(0deg);
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+.flip-card-1:hover {
+  transform: rotateY(180deg);
+}
+
+.flip-card-2 {
+  transform-origin: center right;
+}
+
+.flip-card-2:hover {
+  transform: translateX(-100%) rotateY(-180deg);
+}
+
+/* -------------------Animaciones & @keyframes-------------------*/
+
+@keyframes myAwesomeAnimation {
+  /*from sirve para determinar como va a estar el elemento en el primer fotograma
+
+to sirve para determinar como va estar el elemento en el ultimo fotograma
+  
+
+  */
+
+  from {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+.my-animation {
+  /*animation: name duration timing-function delay iteration-count direction fill-mode play-state; 
+
+  animation-name: sirve para aplicarle un nombre a la animacion para despues llamarla con un @keyframe y modificarla
+
+  animation-duration: sirver para determinar la duracion de la animacion
+
+  animation-timing-function: sirve para indicar la aceleracion
+  
+  ease-in-out: Comenzará lentamente, será más rápido en el medio de la animación y luego terminará lentamente
+
+  ease: Es como ease-in-out, excepto que comienza ligeramente más rápido de lo que termina.
+
+  ease-in: Comenzará la animación lentamente y finalizará a toda velocidad.
+
+  ease-out: Iniciará la animación a toda velocidad, luego terminará lentamente.
+
+  animation-delay: es el retraso que va a tener la animacion para activarse
+
+  animation-iteration-count: indica cuantas veces se va a repetir la animacion
+
+  animation-direction: indica la direccion en la que se va a hacer la animacion
+
+  animation-fill-mode: tiene dos valores
+
+  forwards: Al final de la animacion se queda con los valores finales de la animacion 
+
+  backwards: Al inicio de la animacion se queda con los valores iniciales de la animacion
+
+  both: aplica al mismo tiempo el valor de forwars y backwards
+
+  */
+  animation-name: myAwesomeAnimation;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.33, 0.92, 0.92, 0.36);
+  animation-timing-function: ease-in-out;
+  animation-delay: 1500ms;
+  animation-delay: 0s;
+  animation-iteration-count: 3;
+  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
+  animation-direction: reverse;
+  animation-direction: alternate;
+  animation-direction: alternate-reverse;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-fill-mode: forwards;
+  animation-fill-mode: backwards;
+  animation-fill-mode: both;
+  animation: myAwesomeAnimation 1s;
+  animation: myAwesomeAnimation 1.5s ease 250ms 6 alternate both running;
+}
+
+@keyframes myAwesomeAnimation2 {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateX(-50%);
+  }
+
+  75% {
+    transform: translateX(-75%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+.my-animation-2 {
+  animation: myAwesomeAnimation2 2s;
+}
+
+@keyframes multipleAnimation1 {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes multipleAnimation2 {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animation-multiple {
+  animation: multipleAnimation1 2s infinite;
+  animation: multipleAnimation2 2s infinite;
+  animation: multipleAnimation1 2s infinite, multipleAnimation2 1s 3 ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* -------------------Ejemplos con movimiento-------------------*/
+
+.multiple-examples {
+  text-align: center;
+}
+
+.fade-in {
+  font-size: 5vw;
+  animation: fadeIn 2s linear 2s infinite alternate both;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  font-size: 5vw;
+  animation: fadeOut 2s linear 2s infinite alternate both;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate(-2px, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate(7px, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate(-5px, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate(9px, 0);
+  }
+}
+
+.shake {
+  font-size: 4vw;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.shake:hover {
+  animation: shake 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate(0, 0);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  font-size: 5vw;
+  animation: pulse 1s linear infinite;
+}
+
+@keyframes heartColor {
+  10% {
+    background-color: #d00;
+  }
+}
+
+.heart {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10vw;
+  height: 10vw;
+  animation: pulse 1s infinite;
+}
+
+.heart::after,
+.heart::before {
+  position: absolute;
+  content: "";
+  left: 5vw;
+  top: 0;
+  width: 5vw;
+  height: 8vw;
+  background-color: #a00;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  border-radius: 5vw 5vw 0 0;
+  animation: heartColor 1s infinite;
+}
+
+.heart::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 5vw;
+  height: 5vw;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  border: 0.5vw solid rgba(0, 0, 0, 0.102);
+  border-top-color: #09f;
+  animation: spinner 1s ease-out infinite;
+}
+
+.btn {
+  position: relative;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.2rem;
+  width: 15rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0.25rem 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.15);
+}
+
+.anim-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0.25rem;
+  background-color: #d00;
+  transition: width 0.5s ease, left 0.5s ease, right 0.5s ease;
+}
+
+.anim-bottom:hover::after {
+  width: 100%;
+}
+
+.to-left::after {
+  left: 0;
+}
+
+.to-center::after {
+  left: 50%;
+}
+
+.to-center:hover::after {
+  left: 0;
+}
+
+.to-right::after {
+  right: 0;
+}
+
+.bg-gradient {
+  background-image: linear-gradient(to right, pink, violet, orange, orangered);
+  background-size: 300%, 100%;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.bg-gradient:hover {
+  background-position: 100%, 0;
+}
+
+.tabs-menu {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 70%;
+  height: 3rem;
+  background-color: #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabs-menu input[type="radio"] {
+  display: none;
+}
+
+.tabs-menu label {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  width: calc(100% / 4 - 0.5rem);
+  z-index: 1;
+}
+
+.tabs-menu label:hover {
+  color: #fff;
+}
+
+.tabs-menu input[type="radio"]:checked + label {
+  color: #fff;
+}
+
+.tab-bg-hover {
+  position: absolute;
+  width: calc(100% / 4 - 0.5rem);
+  height: 2rem;
+  background-image: linear-gradient(90deg, #a00, #d00);
+  border-radius: 0.5rem;
+  transition: transform 300ms ease-in-out;
+}
+
+#tab-1:checked ~ .tab-bg-hover {
+  transform: translateX(0);
+}
+
+#tab-2:checked ~ .tab-bg-hover {
+  transform: translateX(100%);
+}
+
+#tab-3:checked ~ .tab-bg-hover {
+  transform: translateX(200%);
+}
+
+#tab-4:checked ~ .tab-bg-hover {
+  transform: translateX(300%);
+}
+
+.off-canvas-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 999;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.off-canvas-burger {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 998;
+  width: 3rem;
+  height: 0.6rem;
+  background-color: #d00;
+  border-radius: 0.3rem;
+  transform: rotate(0deg) translate(0, -1.2rem);
+  transition: transform 500ms ease, background-color 500ms ease;
+  transform-origin: top left;
+  overflow-x: visible;
+}
+
+.off-canvas-burger:before,
+.off-canvas-burger:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.6rem;
+  background-color: #d00;
+  border-radius: 0.3rem;
+  transition: transform 500ms ease;
+}
+
+.off-canvas-burger:before {
+  transform: rotate(0deg) translate(0, -0.9rem);
+  background-color: #d00;
+}
+
+.off-canvas-burger:after {
+  transform: rotate(0deg) translate(0, 0.3rem);
+  background-color: #d00;
+}
+
+.off-canvas-btn:checked + .off-canvas-burger {
+  background-color: transparent;
+}
+
+.off-canvas-btn:checked + .off-canvas-burger:before {
+  transform: rotate(45deg) translate(0, 0);
+}
+
+.off-canvas-btn:checked + .off-canvas-burger:after {
+  transform: rotate(-45deg) translate(0.4rem, -0.5rem);
+}
+
+.off-canvas-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0008;
+  z-index: 997;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(0, -100%);
+  transition: transform 500ms ease;
+}
+
+.off-canvas-btn:checked ~ .off-canvas-menu {
+  transform: translate(0, 0);
+}
+
+.off-canvas-menu-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.off-canvas-link {
+  border-bottom: thin solid #d00;
+  padding: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 300ms ease;
+}
+
+.off-canvas-link:hover {
+  background-color: #d005;
+}
+
+.off-canvas-link:first-child {
+  border-top: thin solid #d00;
+}
+
+.modal-1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0008;
+  z-index: 996;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 500ms ease;
+  opacity: 0;
+  pointer-events: none;
+  animation: modal;
+}
+
+.modal-container {
+  position: relative;
+  background-color: #fff;
+  border: thick double #d00;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 70%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow: hidden;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  background-color: #d00;
+  text-decoration: none;
+  text-align: center;
+  line-height: 3rem;
+  border-radius: 50%;
+  transition: background-color 300ms linear, transform 300ms ease-in-out;
+}
+
+.modal-close:hover {
+  background-color: #b00;
+  transform: scale(1.2);
+}
+
+.modal-1:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@keyframes introStarWars {
+  0% {
+    transform: perspective(100vh) rotateX(15deg) translateY(100%);
+  }
+
+  100% {
+    transform: perspective(100vh) rotateX(25deg) translateY(-200%);
+  }
+}
+
+.star-wars {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: #ffb13a;
+  background-image: url(/assets/stars.gif);
+}
+
+.star-wars-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  text-align: justify;
+  letter-spacing: 0.1rem;
+  animation: introStarWars 25s linear infinite;
+}
+
+.star-wars h2,
+.star-wars h3 {
+  font-size: 7vw;
+  text-align: center;
+}
+
+.star-wars p {
+  font-size: 4vw;
+  line-height: 4rem;
+  overflow: hidden;
+}

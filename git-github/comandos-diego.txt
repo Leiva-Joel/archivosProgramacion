@@ -1,0 +1,15 @@
+git --version: sirve para ver la version de git y ver si esta bien instalado
+
+git log --oneline: sirve para ver todos los commits que hicimos en una linea cada commits
+
+get checkout 34245652 ese es el numero de nuestra version sirve para entrar a una version de nuestro programa
+
+git-show: nos muestra todos los cambios que hicimos en nuestras versiones
+
+CUANDO ESTEMOS DENTRO DEL DE GIT TENEMOS QUE ESCRIBIR EL NOMBRE DEL COMMIT Y DESPUES APRETAR LA TECLA Esc shift z z
+
+git-reset 5646438 --hard: es para desde el hash que pusimos todos los commits que hayamos hecho despues de ese se van a borrar y el que seleccionamos se va a volver master
+
+git branch: siver para ver las ramas que creamos o poder crear una
+
+git-checkout nombredelarama: tambien sirve pare entrar a la rama que queramos

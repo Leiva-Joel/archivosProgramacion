@@ -1,0 +1,193 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-image: url(/assets/images/bg-desktop.svg);
+  background-color: #674baf;
+  background-position: top left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 56px;
+  color: #fff;
+  font-size: 1rem;
+  overflow-x: hidden;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+header{
+  margin-bottom: 50px;
+  height: 80px;
+}
+
+.logo {
+  margin-top: 30px;
+}
+
+.logo__img {
+  width: 200px;
+}
+
+.content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ilust {
+  margin: 0 2em 0 0;
+}
+
+.ilust__img {
+  width: 37.5rem;
+}
+
+.text {
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text__title {
+  font-size: 40px;
+  padding-bottom: 20px;
+  font-weight: 600;
+}
+
+.text__parag {
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.text__cta {
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  color: #674baf;
+  background-color: #Fff;
+  width: 12.5em;
+  padding: 10px 0;
+  border-radius: 40px;
+  box-shadow: .125rem .3125rem .9375rem rgba(0, 0, 0, 0.445);
+  margin-bottom: 50px;
+  transition: background-color 300ms ease-in, color 400ms ease-in;
+}
+
+.social-icons {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.social-icons__item {
+  list-style: none;
+  border: .0625rem solid #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: border-color 400ms ease;
+}
+
+.social-icons__icon {
+  font-size: 20px;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  transition: color 400ms ease;
+}
+
+@media (hover: hover) {
+  .text__cta:hover {
+    background-color: #e882e8;
+    color: inherit;
+  }
+
+  .social-icons__item:hover {
+    border-color: #ce62ce;
+  }
+
+  .social-icons__item:hover .social-icons__icon {
+    color: #ce62ce;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  main {
+    height: 60vh;
+  }
+
+  header {
+    height: 30px;
+  }
+
+  .text__title {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  body {
+    background-image: url(/assets/images/bg-mobile.svg);
+  }
+
+  header {
+    height: 1rem;
+    margin-bottom: 80px;
+  }
+
+  .logo__img {
+    width: 9.375rem;
+  }
+
+  .content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+  }
+
+  .ilust__img {
+    width: 18.75rem;
+  }
+
+  .text{
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text__title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .text__parag {
+    text-align: center;
+  }
+
+  .social-icons{
+    justify-content: center;
+  }
+
+  .social-icons__item{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+  }
+
+  .social-icons__icon{
+    font-size: 15px;
+    line-height: 30px;
+  }
+
+  .social-icons__icon:nth-child(2){
+    margin: 0 .625rem;
+  }
+}

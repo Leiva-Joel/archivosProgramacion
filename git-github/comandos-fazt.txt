@@ -1,0 +1,84 @@
+git add index.html (ese es un archivo de ejemplo)
+
+Sirve para introducir ese archivo en nuestra area de trabajo con git
+    
+
+
+git commit
+
+Sirve para crear un punto de control
+
+SI SE BUGUEA ESCRIBIR reset
+
+
+
+git commit
+
+Es para crear un punto de control pero cuando ya tenemos archivos nos pide lo siguiente:
+
+
+
+git config --global user.email "leivajoel79@gmail.com"
+
+Sirve para especificar el mail de la persona que esta haciendo los cambios porque en un programa de git muchas personas pueden hacer cambios
+
+
+
+
+git config --global name"Joel"
+
+Sirve para especificar el nombre de la persona que esta haciendo los cambios porque en un programa de git muchas personas pueden hacer cambios
+
+
+
+si despues de esto volvemos a apretar git commit nos va a abrir un editor de codigo en la terminal en el cual vamos a tener que ponerle nombre y despues apretar la tecla Esc hay que poner wq
+
+
+
+
+git log
+
+Sirve para ver las commits que creamos y tambien nos especifica el nombre del usuario que lo creo, el mail y la fecha
+
+
+
+git  checkout -- index.html 
+
+Es para revertir los cambios que le hayamos hecho a nuestro archivo
+
+
+
+git diff index.html
+
+Es para ver los cambios que le hicimos a un archivo
+
+
+
+git add index.html
+
+Sirve para cuando un archivo que hayamos modificado despues de un punto de control podamos guardar los cambios
+
+
+
+
+git commit -m "aca va el nombre del punto de control"
+
+Sirve para evitar entrar a ese editor de codigo para poner un punto de control 
+
+
+
+gic branch nombredelarama
+
+Sirve para crear una nueva rama de tu proyecto mientras que el otro no va a ser modificado por esa rama
+
+
+
+git checkout nombredelarama
+
+Sirve para poder entrar a la rama que queramos
+
+
+
+git add .
+
+Si usamos el punto va a agregar todos los archivos que hayamos modificado o agregado

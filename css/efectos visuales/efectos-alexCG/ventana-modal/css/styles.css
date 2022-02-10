@@ -1,0 +1,143 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.header {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.cta {
+  margin: auto;
+  background-color: #4169e1;
+  color: #fff;
+  text-decoration: none;
+  padding: 1.2em 3em;
+  border-radius: 0.4em;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  display: flex;
+
+  --opacity: 0;
+  --pointer: none;
+
+  opacity: var(--opacity);
+  pointer-events: var(--pointer);
+  transition: opacity 0.5s;
+}
+
+.modal:target {
+  --opacity: 1;
+  --pointer: unset;
+}
+
+.modal__container {
+  margin: auto;
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90%;
+  overflow: hidden;
+  text-align: center;
+  padding: 2.5em 1.5em;
+  border-radius: 1em;
+}
+
+.modal:target .modal__container {
+  animation: show 1s 0.5s backwards;
+}
+
+@keyframes show {
+  0% {
+    transform: translateY(-150vh);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.modal__picture {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.modal:target .modal__picture {
+  animation: scale 0.5s 1.5s backwards;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0);
+  }
+}
+
+.modal__img {
+  width: 100%;
+  display: block;
+}
+
+.modal__title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.modal:target .modal__title {
+  display: block;
+  white-space: nowrap;
+  border-right: 3px solid;
+  width: 13ch;
+  animation: typing 1.5s steps(13) 1.5s infinite alternate backwards;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+.modal__paragraph {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 1.5;
+}
+
+.modal__close {
+  display: inline-block;
+  border: 1px solid #333;
+  padding: 1em 2em;
+  text-decoration: none;
+  font-weight: 700;
+  color: #333;
+  border-radius: 0.4em;
+  transition: background-color 0.3s, color 0.4s;
+}
+
+.modal__close:hover {
+  background-color: #4169e1;
+  color: #ccc;
+}
+
+@media screen and(max-width:600px) {
+  .modal__title {
+    font-size: 1.7rem;
+  }
+}
