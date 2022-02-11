@@ -17,15 +17,46 @@
   <h1>Asincronia en JavasCript</h1>
 
   <script>
+/*     
     console.log("Inicio")
 
+    //tiene que esperar tres segundos para ejecutarse ya que le puse 3000
     setTimeout(() => {
       console.log("Ejecutando un setTimeOut, esto se ejecuta una sola vez")
+    }, 3000);
+
+    //se ejecuta al instantes y por cada segundo que pasa aumenta 1
+    setInterval(() => {
+      console.log("Ejecutando un setInterval esto se ejecuta indefinidamente cada cierto intervalo de tiempo")
+    }, 1000); */
+
+/* 
+    let temporizador = setTimeout(() => {
+      console.log(new Date().toLocaleDateString())
     }, 1000);
 
-    setInterval(() => {
-      console.log("Ejecutando un setInterval esto se ejecuta indefinidamente")
-    }, interval);
+    clearTimeout(temporizador)
+
+    console.log("Despues del clearTimeOut") */
+
+/*     
+    let temporizador = setInterval(() => {
+      console.log(new Date().toLocaleTimeString())
+    }, 1000);
+
+    clearInterval(temporizador) */
+
+
+/*
+    Antes de explicar como funciona el modelo de javascript es importante entender algunos conceptos:
+
+    Procesamiento Single thread y Multi thread
+    Operaciones de CPU y operaciones de I / O
+    Operaciones Concurrentes y Parelelas
+    Operaciones Bloqueantes y No Bloqueantes
+    Operaciones Sincronas y Asincronas
+*/
+    console.log("Despues del clearInterval")
   </script>
 </body>
 </html>
