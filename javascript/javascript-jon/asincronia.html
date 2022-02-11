@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Asincronia en JavasCript</title>
   <style>
     body {
@@ -13,41 +14,42 @@
     }
   </style>
 </head>
+
 <body>
   <h1>Asincronia en JavasCript</h1>
 
   <script>
-/*     
-    console.log("Inicio")
+    /*     
+  console.log("Inicio")
 
-    //tiene que esperar tres segundos para ejecutarse ya que le puse 3000
-    setTimeout(() => {
-      console.log("Ejecutando un setTimeOut, esto se ejecuta una sola vez")
-    }, 3000);
+  //tiene que esperar tres segundos para ejecutarse ya que le puse 3000
+  setTimeout(() => {
+    console.log("Ejecutando un setTimeOut, esto se ejecuta una sola vez")
+  }, 3000);
 
-    //se ejecuta al instantes y por cada segundo que pasa aumenta 1
-    setInterval(() => {
-      console.log("Ejecutando un setInterval esto se ejecuta indefinidamente cada cierto intervalo de tiempo")
-    }, 1000); */
+  //se ejecuta al instantes y por cada segundo que pasa aumenta 1
+  setInterval(() => {
+    console.log("Ejecutando un setInterval esto se ejecuta indefinidamente cada cierto intervalo de tiempo")
+  }, 1000); */
 
-/* 
-    let temporizador = setTimeout(() => {
-      console.log(new Date().toLocaleDateString())
-    }, 1000);
+    /* 
+      let temporizador = setTimeout(() => {
+        console.log(new Date().toLocaleDateString())
+      }, 1000);
 
-    clearTimeout(temporizador)
+      clearTimeout(temporizador)
 
-    console.log("Despues del clearTimeOut") */
+      console.log("Despues del clearTimeOut") 
+      console.log("Despues del clearInterval") */
 
-/*     
-    let temporizador = setInterval(() => {
-      console.log(new Date().toLocaleTimeString())
-    }, 1000);
+    /*     
+      let temporizador = setInterval(() => {
+        console.log(new Date().toLocaleTimeString())
+      }, 1000);
 
-    clearInterval(temporizador) */
+      clearInterval(temporizador) */
 
-
-/*
+    /*
     Antes de explicar como funciona el modelo de javascript es importante entender algunos conceptos:
 
     Procesamiento Single thread y Multi thread
@@ -55,8 +57,51 @@
     Operaciones Concurrentes y Parelelas
     Operaciones Bloqueantes y No Bloqueantes
     Operaciones Sincronas y Asincronas
-*/
-    console.log("Despues del clearInterval")
+    
+    Javascript usa un modelo asíncrono y no bloqueante, con un loop de eventos implementado en un sólo hilo, (single thread) para operaciones de entrada y salida (input/output).
+  */
+
+    //Codigo sincrono bloqueante
+    (() => {
+      console.log("Código Síncrono");
+      console.log("Inicio");
+
+      function dos() {
+        console.log("Dos");
+      }
+
+      function uno() {
+        console.log("Uno");
+        dos();
+        console.log("Tres");
+      }
+      uno();
+      console.log("Fin");
+    })();
+    console.log("********************");
+
+    //Codigo asincrono No bloqueante
+    (() => {
+      console.log("Código Asíncrono");
+      console.log("Inicio");
+
+      function dos() {
+        setTimeout(function () {
+          console.log("Dos");
+        }, 1000);
+      }
+
+      function uno() {
+        setTimeout(function () {
+          console.log("Uno");
+        }, 0);
+        dos();
+        console.log("Tres");
+      }
+      uno();
+      console.log("Fin");
+    })();
   </script>
 </body>
+
 </html>
