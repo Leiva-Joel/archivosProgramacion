@@ -300,11 +300,11 @@
 
 
     // <=============================54.Generators=============================>
-
+/*     
     //Es una funcion que nos permite trabajar de una manera mas amigable con la interfaz de los iteradores en un elemento iterable
-
+    
     //Es convertir el codigo de una funcion en iterable
-
+    
     //para que sea una funcion tipo generador hay que agregar un asterisco(*) alado de la palabra
     function* iterable () {
       //Es como un return que le va a indicar a la funcion que cuando detecte que me han mandado a llamar con el metodo next del iterador, mando el primer valor y ahi dejo el cursor en el codigo interno de la funcion. Cuando se vuelva a ejecutar un segundo metodo next fuera de esa funcion iria a buscar el siguiente yield y si no encutra un yield significa que ha acabado con los valores de esta funcion iterable y el metodo next nos daria en su propiedad done un true
@@ -315,32 +315,91 @@
       yield "hola 3";
       yield "hola 4";
     }
-
+    
     let iterador = iterable();
-/*     
-    console.log(iterador.next())
-    console.log(iterador.next())
-    console.log(iterador.next())
-    console.log(iterador.next())
-    console.log(iterador.next())
-*/
-
-    for (let y of iterador) {
-      console.log(y)
+       
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+    
+   
+   for (let y of iterador) {
+     console.log(y)
     }
-
+    
     const arreglo = [...iterable()]
     console.log(arreglo)
-
+    
     function cuadrado(valor) {
-      setTimeout(() => {
+      return setTimeout(() => {
         console.log({valor, resultado: valor * valor})
       }, Math.random() * 1000);
-
-      return {
-      valor, 
-      resultado: valor * valor}
     }
-  </script>
+    
+    function* generador () {
+      console.log("Inicia generator")
+      yield cuadrado(0);
+      yield cuadrado(1);
+      yield cuadrado(2);
+      yield cuadrado(3);
+      yield cuadrado(4);
+      yield cuadrado(5);
+      console.log("Termina generator")
+    }
+    
+    let gen = generador()
+    
+    for (let y of gen) {
+      console.log(y)
+    }
+*/
+
+
+
+
+
+    // <=============================55.Proxies=============================>
+
+    // Es un mecanismo que tiene JS, que te permite crear un objeto basado en un objeto literal inicial, muy similar a cuando tenes en POO en JS una clase, las clases es un modelo a seguir, y cuando generas una nueva instancia de esa clase, esa instancia o ese objeto que has creado obtiene ciertas caracteristicas. Los proxies es algo muy similar, pero en lugar de usar clases como el modelo a seguir, vamos a usar un objeto literal.
+
+    //El proxie va a recibir el objeto literal, va a generar una copia y va a permitir que realizes ciertas operaciones, como por ejemplo validacion de propiedades o de tipo de datos dentro de la copia que se esta creando del objeto original, es decir que vas a tener un medio de vinculacion entre el objeto del cual te basas y la nueva instancia que has generado. Y todo eso se va administrar a traves de un objeto especial, que tambien recibe el proxie, que se le conoce como handler o en español un manejador
+
+    //el objeto que es el modelo a seguir
+    const persona = {
+      nombre: "",
+      apellido: "",
+      edad: 0 
+    }
+
+    //el manejador que va a recibir 3 parametros, el objeto, la propiedad y el valor, si no ponemos nada dentro del manejador no nos va a imprimir los datos que le hayamos pasado en la instancia del objeto
+    const manejador = {
+      set(obj, prop, valor) {
+        //validar que solo se puedan asignar las propiedades que esten en el objeto literal persona
+        if (Object.keys(obj).indexOf(prop) === -1) return console.error(`La propiedad "${prop}" no existe en el objeto persona`)
+
+        if ((prop === "nombre" || prop === "apellido") && !(/^[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+$/g.test(valor)))
+          return console.error(`La propiedad "${prop}" solo acepta letras y espacion en blanco`)
+        
+          if (prop === "edad" && typeof valor !== 'number') return console.error(`"${prop}" tiene que tener numeros`)
+  
+          if (prop === "edad" && valor <= 0) return console.error(`${prop} tiene que ser mayor a 0`)
+
+        obj[prop] = valor
+      }
+    }
+
+    //el proxy recibe 2 valores, el objeto literal y el manejador
+    const joel = new Proxy(persona, manejador)
+    //forma de asignarle valores a un proxy
+    joel.nombre = "Joel14";
+    joel.apellido = "_Leiva";
+    joel.edad = -10
+    joel.discord = "joell"
+    console.log(joel)
+    
+    console.log(persona)
+    </script>
 </body>
 </html>
