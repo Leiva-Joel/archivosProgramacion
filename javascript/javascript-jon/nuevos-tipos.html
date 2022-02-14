@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevos Tipos y Caracteristicas del Lenguaje</title>
+  <style>
+    body {
+      background-color: #0b0b20;
+      color: #fff;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nuevos Tipos de Datos en JavasCript</h1>
+
+
+  <script>
+    // <=============================Simbols=============================>
+    
+/*     
+    let id = Symbol("Id")
+    let id2 = Symbol("Id2")
+    console.log(id === id2)
+    console.log(id, id2)
+    console.log(typeof id, typeof id2)
+
+    const NOMBRE = Symbol("Nombre")
+    const SALUDAR = Symbol("Saludar")
+
+    const persona = {
+      [NOMBRE]: "Joel",
+      edad: 14
+    }
+
+    console.log(persona)
+
+    persona.NOMBRE = "Joel Leiva"
+    console.log(persona)
+    console.log(persona.NOMBRE)
+    console.log(persona[NOMBRE])
+
+    persona[SALUDAR] = function () {
+      console.log("HOLA")
+    }
+    console.log(persona)
+    persona[SALUDAR]()
+
+    for (let propiedad in persona) {
+      console.log(propiedad)
+      console.log(persona[propiedad])
+    }
+
+    console.log(Object.getOwnPropertySymbols(persona)) */
+
+
+
+
+
+    // <=============================50.Sets=============================>
+
+    //son como un arreglo pero con valores unicos, es decir que ningun valor primitivo se va a poder repetir
+    
+/* 
+    const set = new Set([1, 2, 3, 3, 4, 5, true, false, true, {}, {}, "HOLA", "hola"])
+    console.log(set);
+    //ver la longitud de el set, es el .length pero para los sets
+    console.log(set.size);
+
+    const set2 = new Set()
+
+    //agregar elementos al set, es el .push pero para los sets
+    set2.add(1)
+    set2.add(2)
+    set2.add(2)
+    set2.add(3)
+    set2.add(true)
+    set2.add(false)
+    set2.add(true)
+    set2.add({})
+    set2.add({})
+
+    console.log(set2)
+    console.log(set2.size)
+    
+    console.log("Recorriedo Set")
+    for (item of set) console.log(item)
+
+    console.log("Recorriendo Set 2")
+    set2.forEach(item => console.log(item))
+
+    //convertier a arreglo para que podamos recorrer cada una de sus posiciones
+    let arr = Array.from(set)
+    console.log(arr)
+    console.log(arr)
+    console.log(arr[9])
+    
+    //eliminar un elemento de nuestro set
+    set.delete("hola")
+    console.log(set)
+
+    //validar si un elemento se encuentra en nuestro set, es el .includes pero para los sets
+    console.log(set.has("HOLA"))
+    console.log(set.has(10))
+
+    //limpiar nuestro set y que no quede ningun elemento
+    set2.clear()
+    console.log(set2) */ 
+
+
+
+
+
+    // <=============================51.Maps=============================>
+
+    //objetos que nos sirven para poder almacenar un conjunto de valores asociados a manera de objeto, ninguna de sus propiedades se puede repetir asi como es set y la podemos iteraer con un bucle for of
+
+/* 
+    const mapa = new Map();
+    //sirve para establecer valores como los getters y setters de la POO
+    mapa.set("nombre", "Joel")
+    mapa.set("apellido", "Leiva")
+    mapa.set("edad", 14)
+
+    console.log(mapa)
+    console.log(mapa.size)
+    console.log(mapa.has("correo"))
+    console.log(mapa.has("nombre"))
+    //devolver el valor que hay dentro de esa propiedad
+    console.log(mapa.get("nombre"))
+    //colocar de vuelta un set para poder reemplazare el valor 
+    mapa.set("nombre", "Joel Leiva")
+    console.log(mapa.get("nombre"))
+    mapa.delete("apellido")
+    //se le puede poner como llave cualquier tipo de dato aunque no tiene mucha utilidad
+    mapa.set(19, "19")
+    mapa.set(false, "falso")
+    mapa.set({}, {})
+    mapa.set([], [])
+    console.log(mapa)
+
+    for (let [key, value] of mapa) {
+      console.log(`Llave: ${key}, valor: ${value}`)
+    }
+
+    //otra forma de crear un mapa y asginarle sus propiedades y valores
+
+    const mapa2 = new Map([
+      ["nombre", "pompe"],
+      ['edad', 7],
+      ['animal', 'perro'],
+      [null, "nulo"]
+    ])
+
+    console.log(mapa2)
+
+    const llavesMapa2 =[ ...mapa2.keys()]
+    const valoresMapa2 = [...mapa2.values()]
+
+    console.log(llavesMapa2)
+    console.log(valoresMapa2)
+ */
+
+
+
+
+
+    // <=============================52.WeakSets & WeakMap=============================>
+
+    //Weak: debil. Significa que solo van a poder almacenar referencias debiles, es decir que las llaves sean de tipo objeto. Esto le permite al recolector de basura que al momento que alguna de las referencias debiles que tengan estos WeakSets o WeaksMaps se hayan limpiado dentro de la logica de nuestra programacion, cuando el recolector de basura del navegador ejecute su proceso, es decir que limpia lo que el navegador no necesite en la sesion que estes trabajando, todas estas referencias debiles al ya no existir las va a limpiar y eso mejora el rendimiento de nuestra aplicacion.
+
+/* 
+    Carencias:
+      -> No se pueden iterar, es decir recorrer cada elemento con un bucle como el for of, ya que no son propieades iterables.
+
+      -> No se pueden eliminar todos los elementos y propiedades directamente con el metodod clear
+
+      -> No podemos verificar su tamaño, es decir no tienen la propiedad size
+*/ 
+
+    //no se pueden agreagar los valores directamente como un set normal
+    //const ws = new WeakSet([1, 2, 3, true, false, false, {}, {}, "HOLA", "HOla"])
+
+/* 
+    const ws = new WeakSet()
+    let valor1 = {'valor1': 1}
+    let valor2 = {'valor2': 2}
+    let valor3 = {'valor3': 3}
+
+    //hay que agregar los elementos con el metodo add
+    ws.add(valor1)
+    ws.add(valor2)
+    console.log(ws)
+
+    console.log(ws.has(valor1))
+    console.log(ws.has(valor3))
+
+    console.log(ws.delete(valor2))
+    console.log(ws)
+    
+    ws.add(valor2)
+    ws.add(valor3)
+    console.log(ws)
+
+
+    setInterval(() => console.log(ws), 1000);
+
+    setTimeout(() => {
+      valor1 = null
+      valor2 = null
+      valor3 = null
+    }, 5000);
+*/
+
+/* 
+    const wm = new WeakMap([
+      ["nombre", "milo"],
+      ["edad", 7]
+      ["animal", "gato"]
+      [null, nulo]
+    ]) 
+*/
+
+/* 
+    const wm = new WeakMap()
+    let llave1 = {}
+    let llave2 = {}
+    let llave3 = {}
+
+    wm.set(llave1, 1)
+    wm.set(llave2, 2)
+    console.log(wm)
+
+    console.log(wm.has(llave1))
+    console.log(wm.has(llave3))
+
+    console.log(wm.get(llave1))
+    console.log(wm.get(llave2))
+    console.log(wm.get(llave3))
+
+    wm.delete(llave2)
+    console.log(wm)
+
+    wm.set(llave2, 2)
+    wm.set(llave3, 3)
+    console.log(wm)
+
+    setInterval(() => console.log(wm), 1000);
+
+    setTimeout(() => {
+      llave1 = null
+      llave2 = null
+      llave3 = null
+    }, 5000);
+
+ */
+
+
+    // <=============================53.Iterables & Iterators=============================>
+
+/* 
+    //iteracion: es una vuelta en el recorrido de ese ciclo
+
+    //dato iterable: estructura de datos lineal que hace que sus elementos sean publicos y se puedan recorrer, como los arrays, strings, maps, sets, los elementos del DOM y al ser iterables guardan algunas caracteristicas
+
+    //iterador: es el mecanismo que esta recorriendo los elementos, como la destructuracion, los elementos for, for of, Array.from, spread operator, las promesas
+
+    //const iterable = "Hola Mundo"
+    //const iterable = new Map([['nombre', 'joel'],['edad', 14]])
+    //const iterable = new Set([1,2,3,3,3,4,5,5])
+    const iterable = [1,2,3,4,5]
+
+    //Accedemos al iterador del objeto iterable
+    const iterador = iterable[Symbol.iterator]()
+
+    console.log(iterable)
+    console.log(iterador)
+    //Devulve un objeto con 2 propiedades, el primer valor iterable y una que indica si se acabaron los elementos para recorrer(true o false)
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+    //console.log(iterador.next())
+
+    //Forma MAS eficiente
+    let next = iterador.next()
+    //mientras next.done sea falso
+    while (!next.done) {
+      //imprime solo los valores
+      console.log(next.value)
+      //lo volvemos a asignar para que recorra el elemento siguiente
+      next = iterador.next()
+    } */
+
+
+
+
+
+    // <=============================54.Generators=============================>
+
+    //Es una funcion que nos permite trabajar de una manera mas amigable con la interfaz de los iteradores en un elemento iterable
+
+    //Es convertir el codigo de una funcion en iterable
+
+    //para que sea una funcion tipo generador hay que agregar un asterisco(*) alado de la palabra
+    function* iterable () {
+      //Es como un return que le va a indicar a la funcion que cuando detecte que me han mandado a llamar con el metodo next del iterador, mando el primer valor y ahi dejo el cursor en el codigo interno de la funcion. Cuando se vuelva a ejecutar un segundo metodo next fuera de esa funcion iria a buscar el siguiente yield y si no encutra un yield significa que ha acabado con los valores de esta funcion iterable y el metodo next nos daria en su propiedad done un true
+      yield "hola"
+      console.log("Hola consola")
+      yield "hola 2"
+      console.log("Seguimos con mas instrucciones de nuestro codigo")
+      yield "hola 3";
+      yield "hola 4";
+    }
+
+    let iterador = iterable();
+/*     
+    console.log(iterador.next())
+    console.log(iterador.next())
+    console.log(iterador.next())
+    console.log(iterador.next())
+    console.log(iterador.next())
+*/
+
+    for (let y of iterador) {
+      console.log(y)
+    }
+
+    const arreglo = [...iterable()]
+    console.log(arreglo)
+
+    function cuadrado(valor) {
+      setTimeout(() => {
+        console.log({valor, resultado: valor * valor})
+      }, Math.random() * 1000);
+
+      return {
+      valor, 
+      resultado: valor * valor}
+    }
+  </script>
+</body>
+</html>
