@@ -362,6 +362,7 @@
 
     // <=============================55.Proxies=============================>
 
+/* 
     // Es un mecanismo que tiene JS, que te permite crear un objeto basado en un objeto literal inicial, muy similar a cuando tenes en POO en JS una clase, las clases es un modelo a seguir, y cuando generas una nueva instancia de esa clase, esa instancia o ese objeto que has creado obtiene ciertas caracteristicas. Los proxies es algo muy similar, pero en lugar de usar clases como el modelo a seguir, vamos a usar un objeto literal.
 
     //El proxie va a recibir el objeto literal, va a generar una copia y va a permitir que realizes ciertas operaciones, como por ejemplo validacion de propiedades o de tipo de datos dentro de la copia que se esta creando del objeto original, es decir que vas a tener un medio de vinculacion entre el objeto del cual te basas y la nueva instancia que has generado. Y todo eso se va administrar a traves de un objeto especial, que tambien recibe el proxie, que se le conoce como handler o en español un manejador
@@ -399,7 +400,15 @@
     joel.discord = "joell"
     console.log(joel)
     
-    console.log(persona)
+    console.log(persona) 
+*/
+
+    // <===========================56.Propiedades Dinámicas de los Objetos===========================>
+
+    const objUsuarios = {}
+    const usuarios = ["Joel", "Jon", "Pompe", "Tiago", "Pepi"]
+
+    usuarios.forEach((usuario, index) => objUsuarios[`id_{index}`])
     </script>
 </body>
 </html>
