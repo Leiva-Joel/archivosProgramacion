@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This</title>
+  <style>
+    body {
+      background-color: #0b0b20;
+      color: #fff;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>This en JavaScript</h1>
+  
+  <script>
+    
+    
+    // <=============================57.this=============================>
+/* 
+    //En POO, es la palabra que hace referencia al objeto que estamos trabajando y asi podemos invocar propiedades o metodos que tengan dicho objeto
+
+    //En JS, en el lado de los navegadores, el this hace referencia al objeto global(window) y en el lado del backend con nodeJS tambien hace referencia al objeto global(global) 
+
+    console.log(this)
+    console.log(window)
+    console.log(this === window)
+    
+    this.nombre = "Contexto Global"
+    console.log(this.nombre)
+
+    function imprimir() {
+       console.log(this.nombre)
+    }
+
+    imprimir()
+
+    const obj = {
+      nombre: "Contexto Objeto",
+      imprimir: function () {
+        console.log(this.nombre)
+      }
+    }
+
+    obj.imprimir()
+
+    const obj2 = {
+      nombre: "Contexto Objeto 2",
+      imprimir
+    }
+
+    obj2.imprimir()
+
+    const obj3 = {
+      nombre: "Contexto Objeto 3",
+      //no usar arrow functions porque imprimen el scope donde se haya declarado su objeto padre
+      imprimir: () => {
+        console.log(this.nombre)// en vez de imprimir "Contexto Objeto 3" imprime "Contexto Global"
+      }
+    }
+
+    obj3.imprimir()
+
+    function Persona (nombre) {
+      //forma antigua sin arrow functions para que imprime la propiedad del scope de la funcion
+      const that = this
+      that.nombre = nombre
+      //this.nombre = nombre
+
+      //return console.log(this.nombre)
+
+      //A las funciones las podemos retornar como el resultado de otra funcion, y eso en JS es clausura o clausure, porque estamos envolviendo una funcion dentro de una funcion y la estamos retornando
+      
+      return function () {
+        //al crear su propio scope no tiene una propiedad nombre, entonces lo que hace es irse al scope global
+        console.log(this.nombre)//devulve "Contexto Global"
+      } 
+
+      //como las arrow functions no crean scope interno si ejecutamos esto imprime "Jon"
+      return () => console.log(this.nombre)
+
+    }
+
+    let joel = new Persona("Joel")
+    joel() 
+*/
+
+
+
+
+    
+    // <=============================58.Call, apply, bind=============================>
+
+    //Estos tres metodos sirven cuando necesito conservar la referencia de un scope en particular y utilizarlo en alguna invocacion en algun codigo, para eso nos sirve estos tres metodos.
+
+    //call: Sirve para seleccionar el contexto al cual queremos llamar, cuando tenemos que pasarle parametros se hace directamente alado del contexto que llamamos
+
+    //apply: sirve para los mismo que call pero al momento de ingreasar parametros hay que hacerlo mediante un arreglo 
+
+    //bind: hace un enlace, muy similiar a la arrow function ya que no crea su propio scope pero usa en el que ha sigo creada
+
+    console.log(this)
+    this.lugar = "Contexto Global";
+    function saludar (saludo, aQuien) {
+      console.log(`${saludo} ${aQuien} desde el: ${this.lugar}`)
+    }
+
+    saludar("Hola", "Po")
+
+    const obj = {
+      lugar: "Contexto Objeto"
+    }
+
+    saludar.call(obj, "Hola", "Joel")
+    saludar.call(null, "Hola", "Joel")
+    saludar.call(this, "Hola", "Joel")
+    saludar.apply(null, ["Chau", "Leiva"])
+    saludar.apply(this, ["Chau", "Leiva"])
+
+    this.nombre = "Window"
+    
+    const persona = {
+      nombre: "Joel",
+      saludar: function() {
+        console.log(`Hola ${this.nombre}`)
+      }
+    }
+    
+    persona.saludar()
+    
+    const otraPersona = {
+      saludar: persona.saludar.bind()
+    }
+    otraPersona.saludar()
+  </script>
+</body>
+</html>

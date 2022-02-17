@@ -409,6 +409,7 @@
 
   // <===========================56.Propiedades Dinámicas de los Objetos===========================>
 
+/* 
     //es un mecanismo por el cual nosotros podemos generar propiedades y/o valores de forma automatica dependiendo de los valores que tengamos. Ejemplo: podemos generar dinamicamente un objeto con la propiedad que sea un id, en vez escribir uno por uno el numero del id simplemente podemos usar este mecanismo para poder automatizar el trabajo, como tambien podemos generar propiedades con numeros aleatorios con el objeto Math
 
     const objUsuarios = {
@@ -420,78 +421,7 @@
     const usuarios = ["Joel", "Jon", "Pompe", "Tiago", "Pepi"]
     usuarios.forEach((usuario, index) => objUsuarios[`id_${index}`] = usuario)
     console.log(objUsuarios)
-
-
-
-
-
-    // <=============================57.this=============================>
-
-    //En POO, es la palabra que hace referencia al objeto que estamos trabajando y asi podemos invocar propiedades o metodos que tengan dicho objeto
-
-    //En JS, en el lado de los navegadores, el this hace referencia al objeto global(window) y en el lado del backend con nodeJS tambien hace referencia al objeto global(global) 
-
-    console.log(this)
-    console.log(window)
-    console.log(this === window)
-    
-    this.nombre = "Contexto Global"
-    console.log(this.nombre)
-
-    function imprimir() {
-       console.log(this.nombre)
-    }
-
-    imprimir()
-
-    const obj = {
-      nombre: "Contexto Objeto",
-      imprimir: function () {
-        console.log(this.nombre)
-      }
-    }
-
-    obj.imprimir()
-
-    const obj2 = {
-      nombre: "Contexto Objeto 2",
-      imprimir
-    }
-
-    obj2.imprimir()
-
-    const obj3 = {
-      nombre: "Contexto Objeto 3",
-      //no usar arrow functions porque imprimen el scope donde se haya declarado su objeto padre
-      imprimir: () => {
-        console.log(this.nombre)// en vez de imprimir "Contexto Objeto 3" imprime "Contexto Global"
-      }
-    }
-
-    obj3.imprimir()
-
-    function Persona (nombre) {
-      //forma antigua sin arrow functions para que imprime la propiedad del scope de la funcion
-      const that = this
-      that.nombre = nombre
-      //this.nombre = nombre
-
-      //return console.log(this.nombre)
-
-      //A las funciones las podemos retornar como el resultado de otra funcion, y eso en JS es clausura o clausure, porque estamos envolviendo una funcion dentro de una funcion y la estamos retornando
-      /* 
-      return function () {
-        //al crear su propio scope no tiene una propiedad nombre, entonces lo que hace es irse al scope global
-        console.log(this.nombre)//devulve "Contexto Global"
-      } */
-
-      //como las arrow functions no crean scope interno si ejecutamos esto imprime "Jon"
-      //return () => console.log(this.nombre)
-
-    }
-
-    let joel = new Persona("Joel")
-    joel()
+*/
     </script>
-</body>
+  </body>
 </html>
