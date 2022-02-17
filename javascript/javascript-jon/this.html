@@ -132,7 +132,7 @@
     persona.saludar()
     
     const otraPersona = {
-      saludar: persona.saludar.bind()
+      saludar: persona.saludar.bind(persona)
     }
     otraPersona.saludar()
   </script>
