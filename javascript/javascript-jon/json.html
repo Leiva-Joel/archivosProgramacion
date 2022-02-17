@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON JavaScript Object Notation</title>
+  <style>
+    body {
+      background-color: #0b0b20;
+      color: #fff;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>JSON JavaScript Object Notation</h1>
+
+  <script>
+    // <=============================59.JSON=============================>
+
+    //JavaScript Object Notation o Notación de Objetos de JavaScript, es un formato ligero de intercambio de datos. Leerlo y escribirlo es simple para humanos, mientras que para las máquinas es fácil de interpretar y generar. Todos los lenguajes de programación lo soportan. 
+    
+    //Su principal función es crear un estándar para almacenar e intercambiar información de texto
+
+    //JSON es un estandar del lenguaje, entonces JSON va a servir para el JS de los navegadores y el JS del lado del servidor, como NodeJs
+
+    /* 
+      Sintaxis derivada de los objetos
+
+      Los datos se encuentran en pares de nombre / valor.
+      Los datos están separados por comas.
+      Las llaves {} contienen objetos.
+      Los corchetes [] contienen arreglos.
+      Los datos tienen un nombre y un valor.
+      Los datos se escriben como pares de nombre / valor "nombre" : "valor".
+    */
+    
+    /* 
+      Valores JSON:
+      Un número (entero o de coma flotante).
+      Una cadena (entre comillas dobles).
+      Un booleano (verdadero o falso).
+      Un arreglo (entre corchetes).
+      Un objeto (entre llaves).
+      Un valor nulo (null).
+    */
+
+    const json = {
+      cadena: "Joel",
+      numero: 14,
+      booleano: true,
+      arreglo: ["correr", "programar", "cocinar"],
+      objeto: {
+        twitter: "@leivajoel",
+        email: "leivajoel79@gmail.com"
+      },
+      nulo: null
+    }
+
+    console.log(json);
+
+    console.log(JSON)
+
+    //El metodo parse va a analizar una notacion JSON, es decir una cadena de texto y la va a convertir a un tipo de dato que JS valide, como un objeto, un arreglo, un boolean, etc
+    console.log(JSON.parse("{}"))
+    console.log(JSON.parse("[1,2,3]"))
+    console.log(JSON.parse("true"))
+    console.log(JSON.parse("false"))
+    console.log(JSON.parse("19"))
+    //console.log(JSON.parse("'Hola Mundo'"))//no lo acepta porque no es un tipo de dato que valide JS
+    console.log(JSON.parse("null"))
+    //console.log(JSON.parse("undefined"))//marca error porque no es un formato valido de objeto
+
+    //El metodo stringify convierte un tipo de dato JS a notación JSON. Es decir lo contrario al parse
+    console.log(JSON.stringify({}))
+    console.log(JSON.stringify([1,2,3]))
+    console.log(JSON.stringify(true))
+    console.log(JSON.stringify(false))
+    console.log(JSON.stringify(19))
+    console.log(JSON.stringify(null))
+    console.log(JSON.stringify(undefined))
+    console.log(JSON.stringify({x: 2, y:3}))
+
+    console.log(JSON.stringify(json))
+    console.log(JSON.parse('{"cadena": "Jon","numero": 35, "booleano": true,"arreglo": ["correr","programar","cocinar"],"objeto": {"twitter": "@jonmircha","email": "jonmircha@gmail.com"},"nulo": null}'));
+  </script>
+</body>
+</html>
+
+  
