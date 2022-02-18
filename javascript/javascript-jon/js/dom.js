@@ -102,7 +102,137 @@ console.log(document.querySelectorAll("#menu li"))
 
 // <=============================63.DOM: Atributos y Data-Attributes=============================>
 
-//
+/* 
+
+//Atributos
 
 console.log(document.documentElement.lang)//imprime el lenguaje del documento HTML
 console.log(document.documentElement.getAttribute("lang"))//otra forma de imprimir el lenguaje
+console.log(document.querySelector(".link-dom").href)//trae el href, es decire, http://127.0.0.1:5501/dom.html
+console.log(document.querySelector(".link-dom").getAttribute("href"))//trae el atributo href, es decir dom.html
+
+document.documentElement.lang = "en"//sirve para modificar atributos
+console.log(document.documentElement.lang)//si lo imrimimos de vuelta aparece el tiempo modficado
+document.documentElement.setAttribute("lang", "es-AR")//otra forma de modificar atributos
+console.log(document.documentElement.lang)//si lo imrimimos de vuelta aparece el tiempo modficado
+
+//Jon declara las variables para elementos del DOM en const ya que siempre va a ser el mismo elemento aunque le cambie los estilos, etc. Y le pone el signo $ para diferenciar las variables de la logica del programa y las del DOM
+const $linkDOM = document.querySelector(".link-dom")
+
+$linkDOM.setAttribute("target", "_blank")//Creando el atributo, usando la variable, para que se abra en otra pestaña
+//Para evitar que sea insegura esa pestaña hay que agreagar ese atributo, para que no haya una dependencia entre la ventana que estamos abriendo y la ventana origen y es muy buena practica usarla
+$linkDOM.setAttribute("rel", "noopener")
+$linkDOM.setAttribute("href", "https://youtube.com/jonmircha")//Cambiando la direccion para que lleve a otra pagina
+console.log($linkDOM.hasAttribute("rel"))//Detectar si un atributo esta o no en el elemento, devuelve true o false
+$linkDOM.removeAttribute("rel")//Remover un atributo
+console.log($linkDOM.hasAttribute("rel"))//Si volvemos a fijarnos si existe el atributo despues de eliminarlo da false
+
+//Data-Attributes
+
+console.log($linkDOM.getAttribute("data-description"))//Como conseguir el data-attribute
+
+console.log($linkDOM.dataset)//Devuelve un map con los data-attributes del elemento
+
+console.log($linkDOM.dataset.description)//Aca le especificamos que data-attribute queremos que nos imprima
+
+$linkDOM.setAttribute("data-description", "Modelo de Objeto del Documento")//modificar un data-attribute
+
+console.log($linkDOM.dataset.description)//Si lo volvemos a imprimir nos muestra el resultado que cambiamos
+
+console.log($linkDOM.hasAttribute("data-id"))//Detectar si el elemento tiene o no el data-attribute
+
+$linkDOM.removeAttribute("data-id")//Elimina un data-attribute
+
+console.log($linkDOM.hasAttribute("data-id"))//Nos volvemos a fijar si existe el atributo despue de eliminarlo, false
+
+*/
+
+
+
+
+
+// <=============================63.DOM: Estilos y Variables CSS=============================>
+
+/* 
+
+const $linkDOM = document.querySelector(".link-dom")
+
+//devuelve un map con las propiedades validas de CSS
+console.log($linkDOM.style)
+
+//devuelve las palabras textuales de los estilos que yo le puse
+console.log($linkDOM.getAttribute("style"))
+
+//Cuando queramos llamar a una propiedad CSS hay que hacerlo con la tecnica camelCase
+console.log($linkDOM.style.backgroundColor)
+console.log($linkDOM.style.color)
+
+//Nos devuelve un mapa con los estilos computados del elemento
+console.log(window.getComputedStyle($linkDOM))
+
+//Asi accedemos a la propiedad que queramos
+console.log(window.getComputedStyle($linkDOM).backgroundColor)
+
+//Asi podemos modificar las propiedades CSS del elemento
+$linkDOM.style.setProperty("text-decoration", "none")
+$linkDOM.style.setProperty("display", "block")
+
+//Esta es otra forma de hacerlo mas comoda
+$linkDOM.style.width = "50%"
+$linkDOM.style.textAlign = "center"
+$linkDOM.style.margin = "1rem auto"
+$linkDOM.style.padding = "1rem"
+$linkDOM.style.borderRadius = "1rem"
+
+//Si volvemos a imprimir las propiedades nos aparece las que modificamos
+console.log($linkDOM.style)
+console.log($linkDOM.getAttribute("style"))
+console.log(getComputedStyle($linkDOM))
+
+//Variables CSS - Custom Properties
+const $html = document.documentElement,
+$body = document.body
+
+//Aca accedemos al html que seria el root y guardamos el valor de la propiedad que le digamos
+let varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color"),
+  varYellowColor = getComputedStyle($html).getPropertyValue("--yellow-color")
+
+console.log(varDarkColor, varYellowColor)
+
+//le asignamos los colores al body
+$body.style.backgroundColor = varDarkColor
+$body.style.color = varYellowColor
+
+//cambiamos los valores de las custom properties
+$html.style.setProperty("--dark-color", "#101010")
+$html.style.setProperty("--yellow-color", "#fff444")
+
+//le asignamos las custom properties a las variables
+varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color"),
+varYellowColor = getComputedStyle($html).getPropertyValue("--yellow-color")
+
+//le volemos a asignar los colores para que se vea el efecto de que lo cambiamos
+$body.style.backgroundColor = varDarkColor
+$body.style.color = varYellowColor 
+
+*/
+
+
+
+
+
+// <=============================63.DOM: Estilos y Variables CSS=============================>
+
+const $card = document.querySelector(".card")
+
+//devuelve la etiqueta de la tarjeta
+console.log($card)
+
+//devuele el nombre de la clase
+console.log($card.className)
+
+//devuelve un map con las clases que tiene ese elemento, cual es la longitud del map, y lo que nos da className  
+console.log($card.classList)
+
+//indica si una clase esta o no en elemento, devulve true o false
+console.log($card.classList.contains("rotate-45"))
