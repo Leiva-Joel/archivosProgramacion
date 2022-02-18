@@ -105,4 +105,4 @@ console.log(document.querySelectorAll("#menu li"))
 //
 
 console.log(document.documentElement.lang)//imprime el lenguaje del documento HTML
-console.log(document.documentElement.getAttribute("lang"))
+console.log(document.documentElement.getAttribute("lang"))//otra forma de imprimir el lenguaje
