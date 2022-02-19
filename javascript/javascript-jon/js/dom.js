@@ -223,16 +223,92 @@ $body.style.color = varYellowColor
 
 // <=============================63.DOM: Estilos y Variables CSS=============================>
 
+/* 
+
 const $card = document.querySelector(".card")
 
-//devuelve la etiqueta de la tarjeta
+//Devuelve la etiqueta de la tarjeta
 console.log($card)
 
-//devuele el nombre de la clase
+//Devuele el nombre de la clase
 console.log($card.className)
 
-//devuelve un map con las clases que tiene ese elemento, cual es la longitud del map, y lo que nos da className  
+//Devuelve un map con las clases que tiene ese elemento, cual es la longitud del map, y lo que nos da className  
 console.log($card.classList)
 
-//indica si una clase esta o no en elemento, devulve true o false
+//Indica si una clase esta o no en elemento, devulve true o false
 console.log($card.classList.contains("rotate-45"))
+
+//Asi podemos agregarle clases a un elemento
+$card.classList.add("rotate-45")
+
+//Si comprobamos que este la clase agreagada nos va a devolver true
+console.log($card.classList.contains("rotate-45"))
+console.log($card.className)
+console.log($card.classList)
+
+//Asi podemos eliminar clases a un elemento
+$card.classList.remove("rotate-45")
+console.log($card.classList.contains("rotate-45"))
+
+//Si NO tiene la propiedad se la AGREGA y SI la tiene se la SACA
+$card.classList.toggle("rotate-45")
+
+//Devulve true ya que recien se la agregue
+console.log($card.classList.contains("rotate-45"))
+
+//En este caso se la estaria sacando ya que la tiene
+$card.classList.toggle("rotate-45")
+
+//Devuelve false ya que recien la elimine
+console.log($card.classList.contains("rotate-45"))
+
+$card.classList.toggle("rotate-45")
+
+//Asi podemos reemplazar una clase por otra a un elemento
+$card.classList.replace("rotate-45", "rotate-135")
+
+//Asi podemos agregarle varias clases al mismo tiempo a un elemento
+$card.classList.add("opacity-80", "sepia")
+
+//Asi podemos eliminarle varias clases al mismo tiempo a un elemento
+$card.classList.remove("opacity-80", "sepia")
+
+//Toggle no acepta varias clases, hay que aplicarlas una por una
+$card.classList.toggle("opacity-80", "sepia")
+
+ */
+
+
+
+
+
+// <=============================66.DOM: Texto y HTML=============================>
+
+const $whatIsDOM = document.getElementById("que-es")
+
+let text = `
+  <p>
+  El Modelo de Objetos del Documento (<b><i>DOM - Document Object Model </i></b>) es un                    
+  API para documentos HTML y XML.
+  </p>
+  <p>
+  Éste provée una representación estructural del documento, permitiendo modificar su contenido y presentación visual mediante código JS.
+  </p>
+  <p>
+      <mark> El DOM no es parte de la especificación de JavaScript, es una API para los navegadores.</mark>
+  </p>
+`
+
+//Reemplaza un texto por otro, no es estandar y no detecta las etiquetas HTML como el p o la b y no se debe usar
+//$whatIsDOM.innerText = text;
+
+//Otra manera de reemplazar texto pero que tampoco reconoce las etiquetas HTML
+//Se puede usar esta propiedad cuando en nuestro programa haya un chat y no permitir a los usuarios poner codigo HTML
+$whatIsDOM.textContent = text;
+
+//Mejor manera para reemplazar un texto por otro ya que reconoce las etiquetas HTML
+$whatIsDOM.innerHTML = text;
+
+//Esta forma elimina el texto y la etiqueta que ya teniamos y los parrafos los pone de manera independiente
+$whatIsDOM.outerHTML = text;
