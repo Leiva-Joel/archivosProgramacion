@@ -317,4 +317,57 @@ $whatIsDOM.outerHTML = text;
 
 */
 
+
+
+
+
 // <=============================67.DOM Traversing: Recorriendo el DOM=============================>
+
+/* 
+
+//Es una serie de propiedades que nos da el api del DOM, que tomando como referencia un nodo, poder recorrer diferentes elementos
+
+//Todos los metodos siguientes son para los nodos que sean elementos
+
+const $cards = document.querySelector(".cards")
+
+console.log($cards)
+
+//Devuelve una coleccion HTML con cada elemento hijo que tenga
+console.log($cards.children)
+
+//Accedemos a uno en particular, ren este caso el numero 4 porque las posiciones empiezan en 0
+console.log($cards.children[3])
+
+//Sirve para detectar cual es el padre
+console.log($cards.parentElements)
+
+//Detecta el primer hijo que sea un nodo, devuelve espacios blanco porque hace referencia a las tabulaciones
+console.log($cards.firstChild)
+
+//Devuelve el ultimo nodo que esta dentro de cards, que seria el espacio en blanco entre </figure> y </section>
+console.log($cards.lastChild)
+
+//Devuelve el primer(first) elemento(element) hijo(child), que seria la tarjeta de Tech
+console.log($cards.firstElementChild)
+
+//Devuelve el ultimo(last) elemento(element) hijo(child), que seria la tarjeta de Nature
+console.log($cards.lastElementChild)
+
+//Devuelve el nodo anterior a la etiqueta figure, que seria un espacio en blanco que representa las tabulaciones
+console.log($cards.previousSibling)
+
+//Devuelve el nodo siguiente a la etiqueta figure, que seria un espacio en blanco que representa las tabulaciones
+console.log($cards.nextSibling)
+
+//Devuelve el elemento anterior a la etiqueta figure, que seria la etiqueta a
+console.log($cards.previousElementSibling)
+
+//Devuelve el elemento siguiente a la etiqueta figure, que seria la etiqueta script
+console.log($cards.nextElementSibling)
+
+//Devuelve el elemento ancestro mas cercano que le especifiquemos
+console.log($cards.closest("body"))
+console.log($cards.children[3].closest("section")) 
+
+*/
