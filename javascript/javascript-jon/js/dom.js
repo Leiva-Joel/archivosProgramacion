@@ -285,6 +285,8 @@ $card.classList.toggle("opacity-80", "sepia")
 
 // <=============================66.DOM: Texto y HTML=============================>
 
+/* 
+
 const $whatIsDOM = document.getElementById("que-es")
 
 let text = `
@@ -311,4 +313,8 @@ $whatIsDOM.textContent = text;
 $whatIsDOM.innerHTML = text;
 
 //Esta forma elimina el texto y la etiqueta que ya teniamos y los parrafos los pone de manera independiente
-$whatIsDOM.outerHTML = text;
+$whatIsDOM.outerHTML = text; 
+
+*/
+
+// <=============================67.DOM Traversing: Recorriendo el DOM=============================>
