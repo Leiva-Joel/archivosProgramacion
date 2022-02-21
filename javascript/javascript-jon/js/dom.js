@@ -221,7 +221,7 @@ $body.style.color = varYellowColor
 
 
 
-// <=============================65.DOM: Estilos y Variables CSS=============================>
+// <=============================65.DOM: Clases CSS=============================>
 
 /* 
 
@@ -372,7 +372,13 @@ console.log($cards.children[3].closest("section"))
 
 */
 
+
+
+
+
 // <=============================68.DOM: Creando Elementos y Fragmentos=============================>
+
+/* 
 
 //Crear una card desde JS
 const $figure = document.createElement("figure"),
@@ -387,7 +393,7 @@ $img.setAttribute("alt", "Animals")
 
 $figCaption.appendChild($figCaptionText)
 $figure.classList.add("card")
-//Le crea un figure al hijo
+//Sirve para poder asignarle hijos a un elemento
 $figure.appendChild($img)
 $figure.appendChild($figCaption)
 
@@ -424,7 +430,7 @@ document.body.appendChild($ul2)
 $ul2.innerHTML = ""
 continentes.forEach((el) => ($ul2.innerHTML += `<li>${el}</li>`))
 
-//Mejor forma de agregar elementos dinamicamente con JS, asi le gastamos menos recursos al navegador
+//Fragmentos dinamicos: es como una variable que se crea dinamicamente y a ese fragmento y por cada iteracion que le tengamos que agregar un nuevo elemento, en ves de pegarle directamente al DOM le pegamos ese fragmento que esta en la memoria de la aplicacion, es decir que no esta en el DOM, y una vez que tengamos cargados todos los elementos cargados en ese fragmento solo hacemos una sola insercion al DOM. Y eso mejora el rendimiento del programa
 
 const meses = [
   "Enero",
@@ -452,3 +458,91 @@ meses.forEach((el) => {
 document.write("<h3>Meses del Año</h3>");
 $ul3.appendChild($fragment);
 document.body.appendChild($ul3);
+
+*/
+
+
+
+
+
+// <=============================69. DOM: Templates HTML=============================>
+
+/* 
+
+//Las templates HTML, como su nombre lo dice, es como un modelo a seguir en el cual tu estructuras el contenido HTML que quieras, que mediante JS, se convierta en dinamico y es otra forma de poder interactuar con el DOM
+
+const $cards = document.querySelector(".cards"),
+  $template = document.getElementById("template-card").content,
+  $fragment = document.createDocumentFragment(),
+  cardContent = [
+    {
+      title: "Tecnología",
+      img: "https://placeimg.com/200/200/tech",
+    },
+    {
+      title: "Animales",
+      img: "https://placeimg.com/200/200/animals",
+    },
+    {
+      title: "Arquitectura",
+      img: "https://placeimg.com/200/200/arch",
+    },
+    {
+      title: "Gente",
+      img: "https://placeimg.com/200/200/people",
+    },
+    {
+      title: "Naturaleza",
+      img: "https://placeimg.com/200/200/nature",
+    },
+  ]
+
+  cardContent.forEach(el => {
+    //Ya que las templates no se imprimen en el DOM, hay que crear un clone para que se pueda ver dentro
+    $template.querySelector("img").setAttribute("src", el.img)
+    $template.querySelector("img").setAttribute("alt", el.title)
+    $template.querySelector("figcaption").textContent = el.title
+    //Poder clonar un nodo, en este caso un template. Recibe: de quien se va a basar y si va a copiar todo su interior
+    let $clone = document.importNode($template, true)
+    $fragment.appendChild($clone)
+  })
+
+  $cards.appendChild($fragment)
+
+*/
+
+
+
+
+
+// <=============================70. DOM: Modificando Elementos (Old Style)=============================>
+
+/* 
+
+//Es una forma vieja de agregar los elementos y diferente a appendChild, que es el unico metodo que vimos para agregar los elementos HTML.
+
+//Vamos a utilizar la manera menos recomendada para agilizar el video y tambien porque lo importante es entender los otros metodos que tenemos aparte de appendChild para agregar los elementos dinamicos
+const $cards = document.querySelector(".cards"),
+  $newCard = document.createElement("figure"),
+  //Poder clonar un nodo
+  $cloneCards = $cards.cloneNode(true)
+
+$newCard.innerHTML = `
+  <img src="https://placeimg.com/200/200/any" alt="Any" />
+  <figcaption>Any</figcaption>
+`
+$newCard.classList.add("card")
+
+//Sirve para reemplazar, y recibe dos parametros, el primero es el nuevo nodo y el segundo seria el nodo a reemplazar
+//$cards.replaceChild($newCard, $cards.children[2])
+
+//Sirve para remover un nodo
+//$cards.removeChild($cards.lastElementChild)
+
+//Sirve para insertar un nodo antes que otro, el primer parametro es el nuevo nodo y el otro es el nodo de referencia 
+//$cards.insertBefore($newCard, $cards.firstElementChild);
+
+
+document.body.appendChild($cloneCards);
+
+*/
