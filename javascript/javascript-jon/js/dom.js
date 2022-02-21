@@ -151,27 +151,27 @@ console.log($linkDOM.hasAttribute("data-id"))//Nos volvemos a fijar si existe el
 
 
 
-// <=============================63.DOM: Estilos y Variables CSS=============================>
+// <=============================64.DOM: Estilos y Variables CSS=============================>
 
 /* 
 
 const $linkDOM = document.querySelector(".link-dom")
 
-//devuelve un map con las propiedades validas de CSS
+//Devuelve un map con las propiedades validas de CSS y solo las que modifique tienen valor, pero las que no modifique estan vacias
 console.log($linkDOM.style)
 
-//devuelve las palabras textuales de los estilos que yo le puse
+//Devuelve las palabras textuales de los estilos que yo le puse
 console.log($linkDOM.getAttribute("style"))
 
 //Cuando queramos llamar a una propiedad CSS hay que hacerlo con la tecnica camelCase
 console.log($linkDOM.style.backgroundColor)
 console.log($linkDOM.style.color)
 
-//Nos devuelve un mapa con los estilos computados del elemento
+//Nos devuelve un mapa con los estilos computados del elemento, es decir todos los estilos que trae el navegador por defecto para esa etiqueta
 console.log(window.getComputedStyle($linkDOM))
 
 //Asi accedemos a la propiedad que queramos
-console.log(window.getComputedStyle($linkDOM).backgroundColor)
+console.log(getComputedStyle($linkDOM).getPropertyValue("Color"))
 
 //Asi podemos modificar las propiedades CSS del elemento
 $linkDOM.style.setProperty("text-decoration", "none")
@@ -199,19 +199,19 @@ let varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color"),
 
 console.log(varDarkColor, varYellowColor)
 
-//le asignamos los colores al body
+//Le asignamos los colores al body
 $body.style.backgroundColor = varDarkColor
 $body.style.color = varYellowColor
 
-//cambiamos los valores de las custom properties
+//Cambiamos los valores de las custom properties
 $html.style.setProperty("--dark-color", "#101010")
 $html.style.setProperty("--yellow-color", "#fff444")
 
-//le asignamos las custom properties a las variables
+//Le asignamos las custom properties a las variables
 varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color"),
 varYellowColor = getComputedStyle($html).getPropertyValue("--yellow-color")
 
-//le volemos a asignar los colores para que se vea el efecto de que lo cambiamos
+//Le volemos a asignar los colores para que se vea el efecto de que lo cambiamos
 $body.style.backgroundColor = varDarkColor
 $body.style.color = varYellowColor 
 
@@ -221,7 +221,7 @@ $body.style.color = varYellowColor
 
 
 
-// <=============================63.DOM: Estilos y Variables CSS=============================>
+// <=============================65.DOM: Estilos y Variables CSS=============================>
 
 /* 
 
