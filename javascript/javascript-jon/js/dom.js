@@ -465,11 +465,11 @@ document.body.appendChild($ul3);
 
 
 
-// <=============================69. DOM: Templates HTML=============================>
+// <=============================69.DOM: Templates HTML=============================>
 
 /* 
 
-//Las templates HTML, como su nombre lo dice, es como un modelo a seguir en el cual tu estructuras el contenido HTML que quieras, que mediante JS, se convierta en dinamico y es otra forma de poder interactuar con el DOM
+//Las templates HTML, como su nombre lo dice, es como un modelo a seguir en el cual vos estructuras el contenido HTML que quieras, que mediante JS, se convierta en dinamico y es otra forma de poder interactuar con el DOM
 
 const $cards = document.querySelector(".cards"),
   $template = document.getElementById("template-card").content,
@@ -515,7 +515,7 @@ const $cards = document.querySelector(".cards"),
 
 
 
-// <=============================70. DOM: Modificando Elementos (Old Style)=============================>
+// <============================70.DOM: Modificando Elementos (Old Style)============================>
 
 /* 
 
@@ -546,3 +546,185 @@ $newCard.classList.add("card")
 document.body.appendChild($cloneCards);
 
 */
+
+
+
+
+
+// <============================71.DOM: Modificando Elementos (Cool Style)============================> 
+
+/* 
+
+.insertAdjacent...
+
+  //Reciben dos Parametros, el primero es la posicion y segundo depende de lo que se vaya a insertar
+
+  //Vendria a ser como un appendChild o insertBefore, agrega un elemento. Su 2do parametro es el element
+  .insertAdjacentElement(position,el)
+
+  //Vendria a ser como un innerHTML, agrega contenido HTML. Su 2do parametro es el codigo HTML 
+  .insertAdjacentHTML(position,html)
+
+  //Vendria a ser como un textContent, inserta texto. Su 2do parametro es su codigo textual
+  .insertAdjacentText(position,text)
+
+Posiciones:
+
+  //Estas son las posiciones, es decir el primer parametro de los insertAdjacent...
+
+  beforebegin (hermano anterior)
+  afterbegin (primer hijo)
+  beforeend (ultimo hijo)
+  afterend  (hermano siguiente)
+
+const $cards = document.querySelector(".cards"),
+  $newCard = document.createElement("figure")
+
+let $contenCard = `
+  <img src="https://placeimg.com/200/200/any" alt="Any" />
+  <figcaption></figcaption>
+`
+
+$newCard.insertAdjacentHTML("beforeend", $contenCard)
+
+$newCard.classList.add("card")
+
+$newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Any")
+
+$cards.insertAdjacentElement("afterbegin", $newCard)
+
+//Metodos que tenia jquery, es decir que ya no hace falta aprenderlo porque ya lo trae JavasCript
+
+
+//Primer Hijo
+//$cards.prepend($newCard);
+
+//Ultimo Hijo
+//$cards.append($newCard);
+
+//Hermano Anterior
+//$cards.before($newCard);
+
+//Hermano siguiente
+//$cards.after($newCard); 
+
+*/
+
+
+
+
+
+// <=============================69.DOM: Templates HTML=============================>
+
+/* 
+
+* 👉 Los eventos son los mecanismos que tenemos en JavaScript para controlar las acciones del usuario y definir el comportamiento del documento en cierto momento o cuando se cumplan ciertas condiciones.
+
+* 👉 Ahora, las funciones q se ejecutan en un Evento es lo q se conoce como el Event Handler o traducido Manejadores de Eventos, o tambien Observadores o Escuchadores.
+
+*/
+
+
+//*👀IMPORTANTE: Todos los eventos empiezan con la palabra "on", excepto cuando lo definimos con addEventListener en un Manejador de Eventos Multiples
+
+//3️⃣ Hay 3 formas de definir los eventos en JS:
+
+//*Forma 1️⃣
+
+  //!❌ A traves de ATRIBUTOS
+    //!Lo cual es una mala practica. Para que el evento funcione a manera de atributo lo unico que hay que hacer es invocarlo de manera semantica. El valor del atributo va a ser el codigo JavaScript que yo quiera ejecutar
+
+  //🟠 Cogido HTML: 
+
+      //<button onclick="alert('Hola Mundo')">Evento con atributo HTML</button>👈Ejecuta el EVENTO onclick
+
+    //❕Podemos ejecutar un Event Handler:
+
+  //🟠 Codigo HTML:
+
+    //<button onclick="holaMundo()">Evento con atributo HTML</button>
+
+    //👉 Esta funcion funcion se va a convertir en el manejador de evento(Event Handler)
+
+    //*👉 Cuando una función se convierte en un Event Handler, es decir una función que se ejecuta en un Evento, nosostros podemos acceder a un Objeto especial q es el Evento en sí, y eso lo podemos acceder con la palabra reservada 'event'
+
+  //🟡 Codigo JS:
+    
+    function holaMundo() {
+      alert("Hola Mundo")
+      console.log(event)
+    } //*👈 Con esto en la consola, se desencadena un tipo de Objeto MouseEvent (evento del Mouse), y dentro de él se encuentran dos propiedades muy importantes: type y target.
+
+    //*⏩Type: es el tipo de evento que se desencadeno
+    //*⏩Target: indica cual fue el objeto que origino el evento
+
+
+//*Forma 2️⃣
+
+  //*✅ A traves de un Evento con Manejador Semantico
+    //*Es una forma correcta de hacerlo. Se le llama manejador semantico porque va teniendo una coerencia la manera de como la vamos definiendo
+
+  //*🔷Estas funciones se pueden definir como arrow function o como funciones anonimas
+
+  //🟠 Codigo HTML:
+
+    //<button id="evento-semantico">Evento con Manejador Semantico</button>;
+  
+  //🟡 Codigo JS
+
+    const $eventoSemantico = document.getElementById("evento-semantico")
+
+  //*📑Formula para ejecutar Funcion como Manejador Semantico:
+  
+  //*elementoHTMLQueAsignamosEvento.nombreDelEvento = funcionQueQueramosEjecutar
+
+  //👀IMPORTANTE: 
+  //!🚫NO hay que ponerle PARENTESIS() a la funcion porque sino se EJECUTA AUTOMATICAMENTE
+
+    $eventoSemantico.onclick = holaMundo
+
+  //!❗❗❗Tienen un inconveniente:
+    //!Las limitantes que tiene es que una vez que hayas definido el evento semantico va a poder ejecutar UNA SOLA funcion, es decir, que pasa si por ejemplo le quiero agregar otra funcion:
+
+    $eventoSemantico.onclick = function (e)  {
+      alert("Hola Mundo Manejador de Eventos Semanticos")//👈Las funciones semanticas NO pueden RECIBIR PARAMETROS, el UNICO parametro que recibe es el evento en si. Que lo podemos obtener con la palabra 'event'
+
+      //*🔧Los desarrolladores lo suelen SIMPLIFICAR a la palabra 'e'
+
+      console.log(e)
+      console.log(event)
+    }
+
+    //?🤔En este caso pensariamos que el evento tendria que ejecutar 2 alerts, pero NO. Ya que es como estar 📝📝 reescribiendo la otra funcion
+    
+
+//*Forma 3️⃣
+
+  //*✅ A traves de un Evento con Manejador Multiple
+
+  //*🔀 Esta forma es muy util cuando queramos hacer que un evento EJECUTE VARIAS FUNCIONES
+
+  //🟠 Codigo HTML:
+
+    //<button id="evento-multiple">Evento con Manejador Multiple</button>
+
+  //🟡 Codigo JS:
+
+    const $eventoMultiple = document.getElementById("evento-multiple")
+
+  //*📑Formula para ejecutar Funcion como Manejador Multiple:
+  //*elementoHTMLQueAsignamosEvento.addEventListener("nombreDelEvento", "funcionQueQueramosEjecutar")
+
+  //👀IMPORTANTE: 
+  //!🚫NO hay que ponerle PARENTESIS() a la funcion porque sino se EJECUTA AUTOMATICAMENTE
+
+    $eventoMultiple.addEventListener("click", holaMundo)
+
+    $eventoMultiple.addEventListener("click", (e) => {
+      alert("Hola Mundo Manejador de Eventos Multiples")
+      console.log(e)
+      console.log(e.type)//👈 Devuelve el tipo de evento
+      console.log(e.target)//👈 Devuelve el objeto que lo origina, es decir la etiqueta HTML
+      console.log(event)
+    })
+
