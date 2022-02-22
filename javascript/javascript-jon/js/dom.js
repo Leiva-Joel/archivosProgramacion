@@ -625,14 +625,16 @@ $cards.insertAdjacentElement("afterbegin", $newCard)
 
 */
 
-function holaMundo() {
+/* 
+
+function holaMundo(e) {
   alert("Hola Mundo");
-  console.log(event);
+  console.log(e);
 }
 
 function saludar(nombre = "Desconocido") {
-  alert(`Hola ${nombre}`);
-  console.log(event);
+  alert(`Hola ${nombre}`)
+  console.log(event)
 }
 
 //*👀IMPORTANTE: Todos los eventos empiezan con la palabra "on", excepto cuando lo definimos con addEventListener en un Manejador de Eventos Multiples
@@ -705,7 +707,7 @@ function saludar(nombre = "Desconocido") {
       console.log(event)
     }
 
-    //?🤔En este caso pensariamos que el evento tendria que ejecutar 2 alerts, pero NO. Ya que es como estar 📝📝 reescribiendo la otra funcion
+    //?🤔 En este caso pensariamos que el evento tendria que ejecutar 2 alerts, pero NO. Ya que es como estar 📝📝 reescribiendo la otra funcion
     
 
 //*Forma 3️⃣
@@ -738,6 +740,79 @@ function saludar(nombre = "Desconocido") {
       console.log(event)
     })
 
-//? En este caso pensariamos que aunque no le pasemos parametros a la funcion saludo se cargaria el valor default que seria 'Desconocido'. Entonces tendria que quedar: 'Hola Desconocido'
- 
-$eventoMultiple.addEventListener("click", saludar)
+//?🤔 En este caso pensariamos que aunque no le pasemos parametros a la funcion saludo se cargaria el valor default que seria 'Desconocido'. Entonces tendria que quedar: 'Hola Desconocido'
+
+//!$eventoMultiple.addEventListener("click", saludar)
+
+//*❗❗ Pero lo que en realidad imprime es: 'Hola [object PointerEvent]'. Esto sucede porque cualquier funcion que vaya a ser manejadora de eventos no puede recibir otro parametro que no sea el evento en si
+
+//?🤔 Ahora, que pasaria si nosotros necesitamos que nuestra funcion reciba parametros y se ejecuta al dar un click? Muy facil, lo que hay que hacer es ejecutar la funcion como arrow function o en una funcion anonima
+
+$eventoMultiple.addEventListener("click", () => {
+  saludar()
+  saludar("Joel")
+})
+
+//*Esta forma no se ejecuto automaticamente porque la funcion controladora es la arrow function
+
+const $eventoRemover = document.getElementById("evento-remover")
+
+//*💥💥 Para remover los eventos el removeEventListener nos va a pedir el evento que queremos remover y la funcion manejadora asociada a ese evento
+
+//!❌ Si lo trabajamos con una arrow function NO va a funcionar porque es una funcion anonima. La caracteristica de una funcion anonima en los eventos es que en el momento que se esta declarando se esta ejecutando y despues se pierde la referencia.
+//*✅Entonces para un manejador de evento, es decir una funcion asociada a un evento, esta tiene que estar guardada en una funcion. Puede ser funcion declarada o funcion expresada
+
+const removerDobleClick = (e) => {
+  alert(`Removiendo el evento de tipo ${e.type}`)
+  console.log(e)
+  $eventoRemover.removeEventListener("dblclick", removerDobleClick)
+  $eventoRemover.disabled = true
+}
+
+$eventoRemover.addEventListener("dblclick", removerDobleClick)
+
+ */
+
+
+
+
+
+// <=============================74.DOM: 💧💧 Flujo de Eventos (Burbuja y Captura)=============================>
+
+//* 👉 Principalmente hay 2 manera que nosotros podemos trabajar en como se va propagando el evento, a eso se refiere cuando hablamos del flujo del evento. 
+
+//* 👉 Una vez que el evento se origina tiene una propagacion a lo largo del arbol del DOM. Por defecto esa propagacion se va dando desde el elemento mas interno hacia el elemento mas externo, que en este caso es el document, y esa fase se llama 💧FASE DE BURBUJA.
+
+//? 🤔 Por que se le llama FASE DE BURBUJA? piensen en una burbuja, analizenlo. Desde el evento mas interno se propaga, y piensen en esa burbuja que se va extendiendo hasta el elemento padre mas superior, que en este caso es window. Por defecto ese es el esquema y el modelo que los navegadores soportan
+
+const $divsEventos = document.querySelectorAll(".eventos-flujo div")
+
+
+// 💬 Imaginense que en una interfaz dinamica una botonera se forma a partir de un catalogo que tengamos en la base de datos, entonces tenemos que ir a 🔎 consultar la base de datos, tenemos que imprimir un boton por cada registro que venga de la base de datos y a ese boton asignarle dinamicamente un evento. Entonces para eso tendriamos que asignarle dinamicamente el evento a todos los elementos
+
+function flujoEventos(e) {
+  console.log(`Hola te saluda ${this.className}, el click lo origino ${e.target.className}`)
+}
+
+console.log($divsEventos)//👈Devuelve un nodeList con las tres divs que se encuentran en esa seccion
+
+$divsEventos.forEach((div) => {
+  //* 3️⃣ El tercer parametro principalmente recibe un boolean, si le ponemos false significa que estamos en fase de burbuja, el flujo de los eventos se propaga del mas interno al mas externo dentrod el arblo del DOM
+
+  //* 💱 Si quisiera el modelo contrario que es la FASE DE CAPTURA, asi se le llama porque estamos capturando esa burburja de los eventos, entonces va desde el elemento mas externo al elemento mas interno
+
+  //💧 FASE DE BURBUJA
+  //div.addEventListener("click", flujoEventos, false)
+
+  //✊ FASE DE CAPTURA
+  //div.addEventListener("click", flujoEventos, true)
+
+  //Al tercer parametro tambien podemos pasarle un objeto
+  div.addEventListener("click", flujoEventos, {
+    //capture: false
+    //capture: true,
+    once: true
+  })
+})
+
+//* 🔻🔻 Cuando le doy click a '3' internamente la div tres esta dentro de la dos y de la uno, y como los tres elementos tienen asignado ese evento click, justamente ahi vemos la propagacion del evento. Por eso tenemos un console.log de tres veces
