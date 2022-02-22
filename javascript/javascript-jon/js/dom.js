@@ -614,7 +614,8 @@ $cards.insertAdjacentElement("afterbegin", $newCard)
 
 
 
-// <=============================69.DOM: Templates HTML=============================>
+// <=============================72.DOM: Manejadores de Eventos=============================>
+// <=======================73. DOM: Eventos con Parámetros y Remover Eventos=======================>
 
 /* 
 
@@ -624,6 +625,15 @@ $cards.insertAdjacentElement("afterbegin", $newCard)
 
 */
 
+function holaMundo() {
+  alert("Hola Mundo");
+  console.log(event);
+}
+
+function saludar(nombre = "Desconocido") {
+  alert(`Hola ${nombre}`);
+  console.log(event);
+}
 
 //*👀IMPORTANTE: Todos los eventos empiezan con la palabra "on", excepto cuando lo definimos con addEventListener en un Manejador de Eventos Multiples
 
@@ -650,10 +660,10 @@ $cards.insertAdjacentElement("afterbegin", $newCard)
 
   //🟡 Codigo JS:
     
-    function holaMundo() {
-      alert("Hola Mundo")
-      console.log(event)
-    } //*👈 Con esto en la consola, se desencadena un tipo de Objeto MouseEvent (evento del Mouse), y dentro de él se encuentran dos propiedades muy importantes: type y target.
+    //function holaMundo() {
+      //alert("Hola Mundo")
+      //console.log(event)
+    //} //*👈 Con esto en la consola, se desencadena un tipo de Objeto MouseEvent (evento del Mouse), y dentro de él se encuentran dos propiedades muy importantes: type y target.
 
     //*⏩Type: es el tipo de evento que se desencadeno
     //*⏩Target: indica cual fue el objeto que origino el evento
@@ -728,3 +738,6 @@ $cards.insertAdjacentElement("afterbegin", $newCard)
       console.log(event)
     })
 
+//? En este caso pensariamos que aunque no le pasemos parametros a la funcion saludo se cargaria el valor default que seria 'Desconocido'. Entonces tendria que quedar: 'Hola Desconocido'
+ 
+$eventoMultiple.addEventListener("click", saludar)
