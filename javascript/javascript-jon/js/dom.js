@@ -827,6 +827,7 @@ $divsEventos.forEach((div) => {
 
 
 // <============================75.DOM: ⏸ stopPropagation & 🛑 preventDefault============================>
+/* 
 
 //*👉 Van a haber veces donde no requeramos que nuestro evento se propague hacia los elementos hijos o padres, dependiendo de la fase que estemos trabajando, y entonces solamente se ejecute una sola vez la programacion de tu funcion manejadora
 
@@ -859,3 +860,31 @@ $linkEventos.addEventListener("click", e => {
 })
 
 //* Al darle click al enlace, ya que esta dentro de la div 'tres', el evento se propaga y se ejecuta el evento que le asigne a la div 'tres'
+
+*/
+
+// <============================76.DOM: 🔏 Delegación de Eventos============================>
+
+//*👉 La delegacion de los eventos no consiste en otra cosa que, por ejemplo cuando yo tengo 1000 divs no seria optimo agregarle el listener a cada vez, de igual manera no es optimo aunque lo hagamos con un ciclo como el forEach. Ya que estaria generando un listener a cada elemento, cuando yo podria tener el evento asignado a un elemento padre superior y a partir de ahi, buscando con un selector quien origino el evento, desencadenar la programacion que quiera al momento del evento
+
+//*💬 Imaginense que en un formulario que tenga 30 inputs y cada uno tenga validaciones, en vez de trabajar el evento onchange de cada input
+
+const $divsEventos = document.querySelectorAll(".eventos-flujo div"),
+  $linkEventos = document.querySelector(".eventos-flujo a");
+  
+function flujoEventos(e) {
+  console.log(
+    `Hola te saluda ${this.className}, el click lo originó ${e.target.className}`
+  );
+  e.stopPropagation();//👈Este metodo va a eliminar la propagacion
+}
+
+$divsEventos.forEach(div => {
+  div.addEventListener("click", flujoEventos)
+});
+
+$linkEventos.addEventListener("click", e => {
+  alert("Hola soy tu amigo y docente digital... Jonathan MirCha")
+  e.preventDefault()//👈Este metodo va a eliminar el comportamiento por defecto
+  e.stopPropagation();//👈Este metodo va a eliminar la propagacion
+})
