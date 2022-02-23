@@ -777,8 +777,9 @@ $eventoRemover.addEventListener("dblclick", removerDobleClick)
 
 
 
-// <=============================74.DOM: 💧💧 Flujo de Eventos (Burbuja y Captura)=============================>
+// <============================74.DOM: 💧💧 Flujo de Eventos (Burbuja y Captura)============================>
 
+/* 
 //* 👉 Principalmente hay 2 manera que nosotros podemos trabajar en como se va propagando el evento, a eso se refiere cuando hablamos del flujo del evento. 
 
 //* 👉 Una vez que el evento se origina tiene una propagacion a lo largo del arbol del DOM. Por defecto esa propagacion se va dando desde el elemento mas interno hacia el elemento mas externo, que en este caso es el document, y esa fase se llama 💧FASE DE BURBUJA.
@@ -788,21 +789,22 @@ $eventoRemover.addEventListener("dblclick", removerDobleClick)
 const $divsEventos = document.querySelectorAll(".eventos-flujo div")
 
 
-// 💬 Imaginense que en una interfaz dinamica una botonera se forma a partir de un catalogo que tengamos en la base de datos, entonces tenemos que ir a 🔎 consultar la base de datos, tenemos que imprimir un boton por cada registro que venga de la base de datos y a ese boton asignarle dinamicamente un evento. Entonces para eso tendriamos que asignarle dinamicamente el evento a todos los elementos
+//* 💬 Imaginense que en una interfaz dinamica una botonera se forma a partir de un catalogo que tengamos en la base de datos, entonces tenemos que ir a 🔎 consultar la base de datos, tenemos que imprimir un boton por cada registro que venga de la base de datos y a ese boton asignarle dinamicamente un evento. Entonces para eso tendriamos que asignarle dinamicamente el evento a todos los elementos
 
 function flujoEventos(e) {
   console.log(`Hola te saluda ${this.className}, el click lo origino ${e.target.className}`)
+  e.stopPropagation()
 }
 
 console.log($divsEventos)//👈Devuelve un nodeList con las tres divs que se encuentran en esa seccion
 
 $divsEventos.forEach((div) => {
-  //* 3️⃣ El tercer parametro principalmente recibe un boolean, si le ponemos false significa que estamos en fase de burbuja, el flujo de los eventos se propaga del mas interno al mas externo dentrod el arblo del DOM
+  //* 3️⃣ El tercer parametro principalmente recibe un boolean, si le ponemos false significa que estamos en fase de burbuja, el flujo de los eventos se propaga del mas interno al mas externo dentrod el arbol del DOM
 
-  //* 💱 Si quisiera el modelo contrario que es la FASE DE CAPTURA, asi se le llama porque estamos capturando esa burburja de los eventos, entonces va desde el elemento mas externo al elemento mas interno
+  //* 💱 Si quisiera el modelo contrario que es la ✊FASE DE CAPTURA, asi se le llama porque estamos capturando esa burburja de los eventos, entonces va desde el elemento mas externo al elemento mas interno
 
   //💧 FASE DE BURBUJA
-  //div.addEventListener("click", flujoEventos, false)
+  div.addEventListener("click", flujoEventos, false)
 
   //✊ FASE DE CAPTURA
   //div.addEventListener("click", flujoEventos, true)
@@ -811,8 +813,49 @@ $divsEventos.forEach((div) => {
   div.addEventListener("click", flujoEventos, {
     //capture: false
     //capture: true,
-    once: true
-  })
+    once: true//👈Significa que la funcion solamente se va a ejecutar una vez
+  }) 
 })
 
 //* 🔻🔻 Cuando le doy click a '3' internamente la div tres esta dentro de la dos y de la uno, y como los tres elementos tienen asignado ese evento click, justamente ahi vemos la propagacion del evento. Por eso tenemos un console.log de tres veces
+
+*/
+
+
+
+
+
+
+// <============================75.DOM: ⏸ stopPropagation & 🛑 preventDefault============================>
+
+//*👉 Van a haber veces donde no requeramos que nuestro evento se propague hacia los elementos hijos o padres, dependiendo de la fase que estemos trabajando, y entonces solamente se ejecute una sola vez la programacion de tu funcion manejadora
+
+//*👉Tambien van a haber veces donde hay ciertos elementos del DOM que tienene comportamientos o eventos ya por defecto. Por ejemplo, pensa en el boton submit que tiene un formulario. Sin necesidad que nosotros programamemos con JS el formulario, a la hora que presionas un input de tipo submmit dentro de un formulario ese formulario se procesa
+
+//*👉 Por ejemplo cuando nosotros estamos controlando el scroll de las barras de desplazamiento, ya sea con las flechas o con la ruedita del mouse, ese es el comportamiento default que justamente tienen las teclas de arriba y abajo o de izquierda y derecha, en el caso de desplazamiento horizontal, y la rueda del mouse. Otro comportamiento por defecto seria los comportamientos que tienen los enlaces, cuando le das click a un enlace te va a llevar al contenido que tenga ese link en su propiedad href
+
+//* 👀 Pero van a haber veces que por ejemplo, mandas un formulario y en lugar de que se procese de manera convencional, vos lo que vas a hacer con JS es solicitar una peticion asincrona via AJAX y esa peticion consulta una base de datos que va a tardar. Cuando este lista la respuesta te va a responder, entonces ahi tendriamos que desactivar el comportamiento de que el formulario se procese de forma automatica
+
+//? 🤔 Entonces como podemos prevenir esa accion por defecto que tengan nuestro elementos del DOM? Facil, hay que ejectuar un metodo que esta dentro del evento en si, me refiero a: event.preventDefault(), esto lo que hace es eliminar el comportamiento que tiene nuestro elemento por default. Que en el caso de los enlaces es redirigirnos hacia la direccion que tenga dentro de su atributo href
+
+const $divsEventos = document.querySelectorAll(".eventos-flujo div"),
+  $linkEventos = document.querySelector(".eventos-flujo a");
+  
+function flujoEventos(e) {
+  console.log(
+    `Hola te saluda ${this.className}, el click lo originó ${e.target.className}`
+  );
+  e.stopPropagation();//👈Este metodo va a eliminar la propagacion
+}
+
+$divsEventos.forEach(div => {
+  div.addEventListener("click", flujoEventos)
+});
+
+$linkEventos.addEventListener("click", e => {
+  alert("Hola soy tu amigo y docente digital... Jonathan MirCha")
+  e.preventDefault()//👈Este metodo va a eliminar el comportamiento por defecto
+  e.stopPropagation();//👈Este metodo va a eliminar la propagacion
+})
+
+//* Al darle click al enlace, ya que esta dentro de la div 'tres', el evento se propaga y se ejecuta el evento que le asigne a la div 'tres'
