@@ -777,7 +777,7 @@ $eventoRemover.addEventListener("dblclick", removerDobleClick)
 
 
 
-// <============================74.DOM: 💧💧 Flujo de Eventos (Burbuja y Captura)============================>
+// <========================== 74.DOM: 💧💧 Flujo de Eventos (Burbuja y Captura) ==========================>
 
 /* 
 //* 👉 Principalmente hay 2 manera que nosotros podemos trabajar en como se va propagando el evento, a eso se refiere cuando hablamos del flujo del evento. 
@@ -863,28 +863,281 @@ $linkEventos.addEventListener("click", e => {
 
 */
 
-// <============================76.DOM: 🔏 Delegación de Eventos============================>
 
+
+
+
+// <============================ 76.DOM: 🔏 Delegación de Eventos ============================>
+
+/* 
 //*👉 La delegacion de los eventos no consiste en otra cosa que, por ejemplo cuando yo tengo 1000 divs no seria optimo agregarle el listener a cada vez, de igual manera no es optimo aunque lo hagamos con un ciclo como el forEach. Ya que estaria generando un listener a cada elemento, cuando yo podria tener el evento asignado a un elemento padre superior y a partir de ahi, buscando con un selector quien origino el evento, desencadenar la programacion que quiera al momento del evento
 
-//*💬 Imaginense que en un formulario que tenga 30 inputs y cada uno tenga validaciones, en vez de trabajar el evento onchange de cada input
+//*?💬 Imaginense que en un formulario que tenga 30 inputs y cada uno tenga validaciones. En vez de trabajar el evento onchange de cada input o el evento onblur, o el onfocus, el evento en cuestion se lo asignemos, en lugar de a esos 30 inputs, al formulario como tal. Incluso se podria asignar al documento raiz, que en este caso es el document.
+
+//*🦊✅✅ Y el profe Jon aplico esta ultima forma cuando hace proyectos con vanilla JS al momento de ESQUEMAR el modelo de sus EVENTOS. Jon genera un listener 🌎GLOBAL para el DOCUMENT, es decir si tiene que activar con click, con el input submit, blur o todos los eventos asignados, se los pega al document y a partir de ahi DETECTA cual es el nodo que le INTERSA QUE ACTIVE EL EVENTO y DESENCADENA la programacion requerida. De tal menera que en lugar de tener 1000 listeners generados por el evento click, tiene un SOLO LISTENER generado al DOCUMENT y detecta cual es el evento que va a desencadenar esa accion del usuario
+
+//!❕❕❕ Un detalle IMPORTANTE es que tambien vamos a EVITAR la PROPAGACION, entonces ya nosotros no tendriamos que estarla deteniendo, porque como el evento esta asignado al document ya NO necesitamos el trabajo que hace la mimsa
 
 const $divsEventos = document.querySelectorAll(".eventos-flujo div"),
   $linkEventos = document.querySelector(".eventos-flujo a");
   
 function flujoEventos(e) {
   console.log(
-    `Hola te saluda ${this.className}, el click lo originó ${e.target.className}`
+    `Hola te saluda ${this}, el click lo originó ${e.target.className}`
   );
-  e.stopPropagation();//👈Este metodo va a eliminar la propagacion
 }
 
-$divsEventos.forEach(div => {
-  div.addEventListener("click", flujoEventos)
-});
+document.addEventListener("click", e => {
 
-$linkEventos.addEventListener("click", e => {
-  alert("Hola soy tu amigo y docente digital... Jonathan MirCha")
-  e.preventDefault()//👈Este metodo va a eliminar el comportamiento por defecto
-  e.stopPropagation();//👈Este metodo va a eliminar la propagacion
+  console.log("Click en",e.target)
+
+  if(e.target.matches(".eventos-flujo div")) {
+   flujoEventos(e)
+  }
+
+  if(e.target.matches(".eventos-flujo a")) {
+    alert("Hola soy tu amigo y docente digital... Jonathan MirCha")
+    e.preventDefault()
+  }
+
 })
+
+//?🤔 Por que cuando nos referimos al this del evento que le asignamos al document nos aparece window? Porque se lo asignamos al document y en ese momento se esta refiriendo al objeto global, devuelve window ya que document cuelga de window y al estar colgada no hace falta aclararlo
+
+//*✅✅ Con esta delegacion de eventos le ahorramos muchos recursos al navegador y mejoramos el rendimiento de nuestro programa, ya que en vez de agregarle un listener a cada elemento, asignamos uno por cada tipo de evento que queramos ejecutar
+
+
+ */
+
+
+
+
+
+// <============================ 77.BOM: 🔎 Propiedades y Eventos ============================>
+
+/* 
+
+//!🦊 Apuntes de la pagina de jonmircha.com:
+//*👉 El Modelo de Objetos del Navegador es un API que permite acceder y modificar las propiedades de las ventanas del propio navegador.
+
+//*👉 Mediante el BOM, es posible redimensionar y mover la ventana del navegador y realizar muchas otras manipulaciones no relacionadas con el contenido de la página HTML.
+
+//*👉 El mayor inconveniente del BOM es que, a diferencia del DOM, no es un API estándar, cada navegador lo puede interpretar de diferente manera, sin embargo, en los últimos años los navegadores están más estandarizados entre sí.
+
+//*💻 El evento resize se activa cuando redimensionemos el tamaño de nuestra ventana, o el del viewport
+
+window.addEventListener("resize", e => {
+
+  console.clear()
+
+  console.log("********* Evento Resize *********")
+
+  //👉Hace referencia al ancho del viewport
+  console.log("Ancho del viewport:",window.innerWidth,"px")
+  
+  //👉Hace referencia al alto del viewport
+  console.log("Alto del viewport:",window.innerHeight,"px")
+  
+  //👉Hace referencia al ancho de la ventana del navegador
+  console.log("Ancho de la ventana:",window.outerWidth,"px")
+  
+  //👉Hace referencia al alto de la ventana del navegador
+  console.log("Alto de la ventana:",window.outerHeight,"px")
+
+  console.log(e)
+  
+})
+
+
+//*🔃 El evento scroll se activa cuando usamos la barra de desplazamiento o nos movemos con la rueda del mouse
+
+window.addEventListener("scroll", e => {
+  
+  console.clear()
+
+  console.log("********* Evento Scroll *********")
+  
+  //👉Hace referencia a la barra de desplazamiento X, mientras mas se aleja de la izquierda mas va a aumentar
+  console.log("Scroll X:",window.scrollX, "px")
+  
+  //👉Hace referencia a la barra de desplazamiento Y, mientras mas se aleje del top mas va a aumentar
+  console.log("Scroll Y:",  window.scrollY, "px")
+
+  console.log(e)
+
+})
+
+
+//*🔁 El evento load se activa cuando la ventana del navegador haya terminado de cargar
+
+window.addEventListener("load", e => {
+
+  console.log("********* Evento Load *********")
+  
+  //👉Hace referencia a la coordernada en la que se emepezo a dibujar la ventana del navegador en vertical
+  console.log("Screen X:",window.screenX, "px")
+  
+  //👉Hace referencia a la coordernada en la que se emepezo a dibujar la ventana del navegador en horizontal
+  console.log("Screen Y:",  window.screenY, "px")
+
+  console.log(e)
+
+})
+
+
+//*🔁 El evento DOMContentLoaded se activa cuando la ventana del navegador haya terminado de cargar
+
+window.addEventListener("DOMContentLoaded", e => {
+  
+  console.log("********* Evento DOMContentLoaded *********")
+  
+  //👉Hace referencia a la coordernada en la que se emepezo a dibujar la ventana del navegador en vertical
+  console.log("Screen X:",window.screenX, "px")
+  
+  //👉Hace referencia a la coordernada en la que se emepezo a dibujar la ventana del navegador en horizontal
+  console.log("Screen Y:",  window.screenY, "px")
+  
+  console.log(e)
+
+})
+
+//! 🥊DOMContentLoaded VS 🥊load
+
+//* ✅✅ Cuando tengamos que hacer que algo se cargue al momento de que el DOM este listo, es mucho mas eficiente trabajar con con el evento 'DOMContentLoaded' que con el ❌'load', sobre todo cuando estemos haciendo peticiones asincronas. Porque el evento DOMContentLoaded es disparado cuando el HTML se cargo por completo, en cambio el evento load se dispara hasta que haya cargado todo el documento HTML, las hojas de estilos, los scripts, imagenes, etc...
+
+*/
+
+
+
+
+
+// <============================ 78.BOM: 🧪 Metodos ============================>
+
+/* 
+
+//👉 Manda una alerta
+//window.alert("Alerta");
+
+//👉 Manda una confirmacion, es decir, manda un mensaje y el usuario tiene que aceptar o rechazar la peticion
+//window.confirm("Confirmación");
+
+//👉 Manda un aviso, es igual que el confirm pero a su vez tiene un input para que pueda mandarnos un mensaje
+//window.prompt("Aviso");
+
+//*🧠 Recordatorio: A todo lo que cuelga de window no es necesario especificarle su padre, entonces queda asi
+
+//alert("Alerta")
+//confirm("Confirmacion")
+//prompt("Aviso")
+
+const $btnAbrir = document.getElementById("abrir-ventana"),
+  $btnCerrar = document.getElementById("cerrar-ventana"),
+  $btnImprimir = document.getElementById("imprimir-ventana")
+
+  let ventana
+
+$btnAbrir.addEventListener("click", e => {
+  //👉 Abre la direccion que le digamos
+  ventana = window.open("https://jonmircha.com")
+})
+
+$btnCerrar.addEventListener("click", e => {
+  //👉 Cierra la ventana
+  ventana.close()
+})
+
+$btnImprimir.addEventListener("click", e => {
+  //👉 Le da la opcion al usuario para que pueda imprimir la pagina web
+  window.print()
+})
+
+ */
+
+
+
+
+
+// <========================= 79.BOM: Objetos: 🕵️‍♀️ URL, Historial y Navegador =========================>
+
+/* 
+
+console.log("********** Objeto URL (location) **********")
+console.log(location);
+
+//👉 Devuelve el origen, es decir imprime: http://127.0.0.1:5501
+console.log(location.origin);
+
+//👉 Devuelve el protocolo del sitio WEB, es decir imprime: http:
+console.log(location.protocol);
+
+//👉 Devuelve el host del sitio WEB incluyendo el puerto, es decir imprime: 127.0.0.1:5501
+console.log(location.host);
+
+//👉 Devuelve el nombre host del sitio WEB, es decir imprime: 127.0.0.1
+console.log(location.hostname);
+
+//👉 Devuelve el numero del puerto
+console.log(location.port);
+
+//👉 Devuelve la direccion URL del sitio WEB, es decir imprime: http://127.0.0.1:5501/dom.html
+console.log(location.href);
+
+//👉 Devuelve el hash que hay en la direccion URL del sitio WEB, es decir imprimiria: #contacto
+console.log(location.hash);
+
+//👉Devuelve todos los valores que encuentra despues del signo '?', es decir imprime: ?nombre=joel&edad=14
+console.log(location.search);
+
+//👉 Devuelve el nombre del archivo al que estoy consultando, es decir imprime: /dom.html
+console.log(location.pathname);
+
+*/
+
+/* 
+
+console.log("********** Objeto Historial (history) **********");
+console.log(history);
+
+//👉 Devuelve la cantidad de paginas que visitamos recientemente
+console.log(history.length);
+
+//👉 Te regresa x paginas hacia atras, por ejemplo visite 5 paginas y pongo 2, me regresa a la pagina 3
+history.back(3)
+
+//👉 Te impulsa x paginas, por ejemplo visite 5 paginas, volvi a la 1 y le paso 2, me lleva a la pagina 3
+history.forward(2)
+
+//👉 Te lleva x paginas adelante o atras, si visite 5 paginas, volvi a la 4 y le paso -1, me lleva a la 3
+history.go(-1)
+
+*/
+
+console.log("********** Objeto Navegador (navigator) **********");
+console.log(navigator);
+
+//👉 Devuelve un objeto con informacion como cual es nuestra velocidad | 4G
+console.log(navigator.connection);
+
+//👉 Devuelve un objeto con ciertos metodos que tiene la geolocalizacion
+console.log(navigator.geolocation);
+
+//👉 Devuelve un objeto con los dispositivos
+console.log(navigator.mediaDevices);
+
+//👉 Devuelve un objeto con los tipos de formatos que dependiendo el tipo de aplicion soporta el navegador
+console.log(navigator.mimeTypes);
+
+//👉 Devuelve un boolean dependiendo si el usuario esta(true) o no(false) conectado a internet         
+console.log(navigator.onLine);
+
+//👉 Es el API que nos ayuda a convertir sitios WEB en PWA
+console.log(navigator.serviceWorker);
+
+//👉 Es el API de almacenamiento, es decir que es como una mini base de datos del navegador
+console.log(navigator.storage);
+
+//👉 Es el API que nos permite realizar acciones cuando detecta un USB
+console.log(navigator.usb);
+
+//👉 Es el API que nos da informacion del usuario, su sistema operativo, su navegador, sus bits, etc.
+console.log(navigator.userAgent);
