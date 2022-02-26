@@ -1,6 +1,7 @@
-/* import{ $menuIcon, $menu } from "./dom/menu-hamburguesa";
+import hamburgerMenu from "./dom/menu-hamburguesa.js";
 
-document.addEventListener("click", e => {
-  
-  if (e.target.matches(".nav__icon")) $menu.classList.toggle("menu--show")
-}) */
+const d = document
+
+d.addEventListener("DOMContentLoaded", e => {
+  hamburgerMenu(".menu-icon", ".menu", ".menu__link")
+})
