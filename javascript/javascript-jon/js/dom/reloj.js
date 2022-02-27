@@ -27,19 +27,26 @@ export function reloj(iniciarReloj, detenerReloj, reloj ) {
   })
 }
 
-export function alarma(iniciarAlarma, detenerAlarma, audio) {
+export function alarma(iniciarAlarma, detenerAlarma, sonido) {
+  let alarma
+  const $alarma = d.createElement("audio")
+  $alarma.src = sonido
 
   d.addEventListener("click", e => {
     if(e.target.matches(iniciarAlarma)) {
-      audio.play()
+        alarma = setTimeout(() => {
+          $alarma.play()
+        }, 1000);
+
+        d.querySelector(iniciarAlarma).disabled = true
     }
     
     if(e.target.matches(detenerAlarma)) {
-      d.querySelector(audio).removeAttribute("autoplay")
+      clearTimeout(alarma)
+      $alarma.pause()
       d.querySelector(iniciarAlarma).disabled = false
-      
     }
+
   })
-  
 
 }

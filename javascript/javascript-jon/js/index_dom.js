@@ -8,5 +8,5 @@ d.addEventListener("DOMContentLoaded", e => {
   
   reloj(".iniciar-reloj", ".detener-reloj", ".reloj")
 
-  alarma(".iniciar-alarma", ".detener-alarma", ".alarma")
+  alarma(".iniciar-alarma", ".detener-alarma", "./assets/assets_alarma.mp3")
 })
