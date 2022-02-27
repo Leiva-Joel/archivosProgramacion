@@ -28,6 +28,10 @@ video {
   height: auto;
 }
 
+.section h3 {
+  font-size: 1.5rem;
+}
+
 .header{
   position: sticky;
   top: 0;
@@ -78,7 +82,7 @@ video {
   bottom: 0;
   background: var(--second-modal-color);
   transition: transform .4s;
-  transform: translateX(-100%);
+  transform: translate(-100%, 0);
   z-index: 998;
 }
 
@@ -101,5 +105,12 @@ video {
 }
 
 .menu--show{
-  transform: translateX(0);
+  transform: translate(0, 0);
+}
+
+/** <===================== ⌚ Reloj Digital y ⏰ Alarma Sonora =====================> */
+
+.btn{
+  margin-top: 1rem;
+  padding: 2px .5rem;
 }
