@@ -44,7 +44,9 @@ export function alarma(iniciarAlarma, detenerAlarma, sonido) {
     if(e.target.matches(detenerAlarma)) {
       clearTimeout(alarma)
       $alarma.pause()
+      $alarma.currentTime = 0
       d.querySelector(iniciarAlarma).disabled = false
+      console.log(e)
     }
 
   })
