@@ -1,19 +1,21 @@
-const d = document;
+const d = document
+export default function countdown(id, limitDate, finalMessage) {
+  const $countdown = d.getElementById(id),
+   countdownDate = new Date(limitDate).getTime();
 
-export default function countdown(selector, dateLimit, msgEnd) {
-  const diasEnMs = 1000 * 60 * 60 * 24,
-    horasEnMs = 1000 * 60 * 60,
-    minutosEnMs = 1000 * 60,
-    segundosEnMs = 1000;
+  let countdownTempo = setInterval(() => {
+    let now = new Date().getTime(),
+      limitTime = countdownDate - now,
+      days = Math.floor(limitTime / (1000 * 60 * 60 * 24)),
+      hours = ("0" + Math.floor((limitTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).slice(-2),
+      minutes = ("0" + Math.floor((limitTime % (1000 * 60 * 60)) / (1000 * 60))).slice(-2),
+      seconds = ("0" + Math.floor((limitTime % (1000 * 60)) / (1000))).slice(-2)
 
-  setInterval(() => {
-    let time = dateLimit.getTime() - new Date().getTime();
+      $countdown.innerHTML = `<h3>Faltan: ${days} dias ${hours} horas ${minutes} minutos ${seconds} segundos</h3>`
 
-    if (time <= 0)
-      return (d.querySelector(selector).innerHTML = `<h3>${msgEnd}</h3>`);
-
-    d.querySelector(selector).innerHTML = `<h3>${Math.floor(
-      time / diasEnMs
-    )} dias ${Math.floor(time / horasEnMs)} Horas</h3>`;
+    if(limitTime < 0){
+      clearInterval(countdownTempo)
+      $countdown.innerHTML = `<h3>${finalMessage}</h3>`
+    }
   }, 1000);
 }

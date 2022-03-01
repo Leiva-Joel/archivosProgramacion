@@ -58,11 +58,16 @@ video {
 
 /** <===================== 🍔 Menu Hamburguesa =====================> */
 
+.menu-icon-container{
+  width: 50px;
+  height: 50px;
+}
+
 .menu-icon{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  font-size: 50px;
+  font-size: 35px;
   z-index: 999;
   cursor: pointer;
   background-color: var(--main-color);
@@ -135,4 +140,35 @@ video {
   border-radius: 50%;
   /* transform: translate(-536px, 168px); */
   transition: transform .25s ease;
+}
+
+/** <=====================   Boton Scroll   =====================> */
+
+
+.btn-scroll{
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  right: 80px;
+  z-index: 999;
+  cursor: pointer;
+  background-color: var(--main-color);
+  padding: .5rem;
+  border-radius: 50%;
+  transition: background-color .3s ease, color .3s ease, transform .3s ease;
+  width: 50px;
+  height: 50px;
+  transform: translateY(300px);
+}
+
+.btn-scroll:hover{
+  background-color: var(--second-color);
+}
+
+.btn-scroll:hover img{
+  filter: invert();
+}
+
+.btn-scroll--show {
+  transform: translateY(0);
 }

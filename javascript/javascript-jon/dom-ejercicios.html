@@ -1,54 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ejercicios del DOM</title>
-    <link rel="stylesheet" href="css/dom-ejercicios.css" />
-  </head>
 
-  <body>
-    <header class="header">
-      <h1 class="title">Ejercicios del DOM</h1>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios del DOM</title>
+  <link rel="stylesheet" href="css/dom-ejercicios.css" />
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="title">Ejercicios del DOM</h1>
+  </header>
+  <div class="menu-icon-container">
     <ion-icon name="menu" class="menu-icon"></ion-icon>
-    <nav class="menu">
-      <a class="menu__link" href="#section-1">Reloj Digital y Alarma Sonora</a>
-      <a class="menu__link" href="#section-2">Eventos del Teclado</a>
-      <a class="menu__link" href="#section-3">Cuenta Regresiva</a>
-      <a class="menu__link" href="#section-4">Seccion 4</a>
-      <a class="menu__link" href="#section-5">Seccion 5</a>
-    </nav>
-    <main>
-      <section class="section" id="section-1">
-        <h2>Seccion 1</h2>
-        <h3>Reloj Digital y Alarma Sonora</h3>
-        <div class="reloj"></div>
-        <button class="btn iniciar-reloj">Iniciar Reloj</button>
-        <button class="btn detener-reloj">Detener Reloj</button>
-        <button class="btn iniciar-alarma">Iniciar Alarma</button>
-        <button class="btn detener-alarma">Detener Alarma</button>
-      </section>
-      <section class="section" id="section-2">
-        <h2>Seccion 2</h2>
-        <h3>Eventos del Teclado</h3>
-        <div class="background">
-          <div class="ball"></div>
-        </div>
-      </section>
-      <section class="section" id="section-3">
-        <h2>Cuenta Regresiva</h2>
-        <div class="countdown-container"></div>
-      </section>
-      <section class="section" id="section-4">
-        <h2>Seccion 4</h2>
-      </section>
-      <section class="section" id="section-5">
-        <h2>Seccion 5</h2>
-      </section>
-    </main>
-    <script src="/js/index_dom.js" type="module"></script>
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-  </body>
+  </div>
+  <nav class="menu">
+    <a class="menu__link" href="#section-1">Reloj Digital y Alarma Sonora</a>
+    <a class="menu__link" href="#section-2">Eventos del Teclado</a>
+    <a class="menu__link" href="#section-3">Cuenta Regresiva</a>
+    <a class="menu__link" href="#section-4">Seccion 4</a>
+    <a class="menu__link" href="#section-5">Seccion 5</a>
+  </nav>
+  <a class="btn-scroll" href="#">
+    <img src="assets/arrow_up.svg" alt="">
+  </a>
+  <main>
+    <section class="section" id="section-1">
+      <h2>Seccion 1</h2>
+      <h3>Reloj Digital y Alarma Sonora</h3>
+      <div class="reloj"></div>
+      <button class="btn iniciar-reloj">Iniciar Reloj</button>
+      <button class="btn detener-reloj">Detener Reloj</button>
+      <button class="btn iniciar-alarma">Iniciar Alarma</button>
+      <button class="btn detener-alarma">Detener Alarma</button>
+    </section>
+    <section class="section" id="section-2">
+      <h2>Seccion 2</h2>
+      <h3>Eventos del Teclado</h3>
+      <div class="background">
+        <div class="ball"></div>
+      </div>
+    </section>
+    <section class="section" id="section-3">
+      <h2>Cuenta Regresiva</h2>
+      <div id="countdown"></div>
+    </section>
+    <section class="section" id="section-4">
+      <h2>Seccion 4</h2>
+    </section>
+    <section class="section" id="section-5">
+      <h2>Seccion 5</h2>
+    </section>
+  </main>
+  <script src="/js/index_dom.js" type="module"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+
 </html>
