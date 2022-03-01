@@ -121,7 +121,7 @@ video {
 .background{
   background-color: var(--second-color);
   width: 100%;
-  height: 25rem;
+  height: 28rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,5 +133,6 @@ video {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  transition: transform .3s ease;
+  /* transform: translate(-536px, 168px); */
+  transition: transform .25s ease;
 }

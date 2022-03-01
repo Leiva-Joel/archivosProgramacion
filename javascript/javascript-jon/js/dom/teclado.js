@@ -1,35 +1,69 @@
-export default function keyboardEvent(ball) {
-  const d = document,
-    $ball = d.querySelector(ball)
+const d = document;
 
-  d.addEventListener("keydown", e => {
-    e.key
+export function moveBall(ball, background) {
+  const $ball = d.querySelector(ball),
+    $background = d.querySelector(background);
 
-    if(e.key === "ArrowUp") {
-      setTimeout(() => {
-        $ball.style.transform = "translate(0, -20px)"
-      }, 0);
+  let translateY = 0,
+    translateX = 0,
+    backgroundW = parseInt(
+      getComputedStyle($background).getPropertyValue("Width")
+    ),
+    backgroundH = parseInt(
+      getComputedStyle($background).getPropertyValue("Height")
+    );
+
+  d.addEventListener("keydown", (e) => {
+    e.key;
+
+    if (e.key === "ArrowUp") {
+      translateY -= 20;
+
+      e.preventDefault();
+
+      if (Math.abs(translateY) > backgroundH / 2) translateY = 0;
+
+      $ball.style.transform = `translate(${translateX}px, ${translateY}px)`;
     }
 
-    if(e.key === "ArrowDown") {
+    if (e.key === "ArrowDown") {
+      translateY += 20;
 
-      setTimeout(() => {
-        $ball.style.transform = "translate(0, 20px)"
-      }, 0);
+      e.preventDefault();
+
+      if (Math.abs(translateY) > backgroundH / 2) translateY = 0;
+
+      $ball.style.transform = `translate(${translateX}px, ${translateY}px)`;
     }
 
-    if(e.key === "ArrowLeft") {
+    if (e.key === "ArrowLeft") {
+      translateX -= 20;
 
-      setTimeout(() => {
-        $ball.style.transform = "translate(-20px, 0)"
-      }, 0);
+      e.preventDefault();
+
+      if (Math.abs(translateX) > backgroundW / 2) translateX = 0;
+
+      $ball.style.transform = `translate(${translateX}px, ${translateY}px)`;
     }
 
-    if(e.key === "ArrowRight") {
+    if (e.key === "ArrowRight") {
+      translateX += 20;
 
-      setTimeout(() => {
-        $ball.style.transform = "translate(20px, 0)"
-      }, 0);
+      e.preventDefault();
+
+      if (Math.abs(translateX) > backgroundW / 2) translateX = 0;
+
+      $ball.style.transform = `translate(${translateX}px, ${translateY}px)`;
     }
-  })
+  });
+}
+
+export function shortcuts() {
+  d.addEventListener("keydown", (e) => {
+    if (e.altKey && e.key === "a") alert("alerta");
+
+    if (e.altKey && e.key === "c") confirm("confimacion");
+
+    if (e.altKey && e.key === "p") prompt("prompt");
+  });
 }
