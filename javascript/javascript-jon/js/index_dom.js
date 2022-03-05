@@ -1,6 +1,11 @@
 import btnScroll from "./dom/boton_scroll.js";
 import countdown from "./dom/cuenta_regresiva.js";
+import dispositivesDetect from "./dom/deteccion_dispositivos.js";
+import connection from "./dom/deteccion_red.js";
 import hamburgerMenu from "./dom/menu-hamburguesa.js";
+import darkMode from "./dom/modo_oscuro.js";
+import responsiveJS from "./dom/objeto_responsive.js";
+import responsiveTest from "./dom/prueba_responsive.js";
 import { reloj, alarma } from "./dom/reloj.js";
 import { moveBall, shortcuts } from "./dom/teclado.js";
 
@@ -8,16 +13,26 @@ const d = document;
 
 d.addEventListener("DOMContentLoaded", (e) => {
   hamburgerMenu(".menu-icon", ".menu", ".menu__link");
-  
-  reloj(".iniciar-reloj", ".detener-reloj", ".reloj");
-  
-  alarma(".iniciar-alarma", ".detener-alarma", "./assets/assets_alarma.mp3");
-  
-  moveBall(".ball", ".background");
-  
-  shortcuts();
-  
-  countdown("countdown", "Nov 21, 2022 19:00:00", "Vacaciones!!!")
 
-  btnScroll(".btn-scroll")
+  reloj(".iniciar-reloj", ".detener-reloj", ".reloj");
+
+  alarma(".iniciar-alarma", ".detener-alarma", "./assets/assets_alarma.mp3");
+
+  moveBall(".ball", ".background");
+
+  shortcuts();
+
+  countdown("countdown", "Nov 21, 2022 19:00:00", "Vacaciones!!!");
+
+  btnScroll(".btn-scroll");
+
+  darkMode(".dark-mode-btn");
+
+  //responsiveJS("responsive-video", "responsive-map");
+
+  responsiveTest(".form-tester", "url", "width", "height", "open", "close");
+
+  dispositivesDetect("user-device");
+
+  connection("online", "offline");
 });
