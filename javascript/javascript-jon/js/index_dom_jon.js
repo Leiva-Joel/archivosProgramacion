@@ -2,6 +2,7 @@ import scrollTopButton from "./dom/boton_scroll_jon.js";
 import countdown from "./dom/cuenta_regresiva_jon.js";
 import userDeviceInfo from "./dom/deteccion_dispositivos_jon.js";
 import networkStatus from "./dom/deteccion_red_jon.js";
+import webCam from "./dom/deteccion_webcam_jon.js";
 import hamburgerMenu from "./dom/menu-hamburguesa-jon.js";
 import { darkTheme } from "./dom/modo_oscuro_jon.js";
 //import responsiveMedia from "./dom/objeto_responsive_jon.js";
@@ -61,6 +62,8 @@ d.addEventListener("DOMContentLoaded", (e) => {
   userDeviceInfo("user-device");
 
   networkStatus();
+
+  webCam("webcam")
 });
 
 d.addEventListener("keydown", (e) => {

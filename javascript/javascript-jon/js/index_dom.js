@@ -2,6 +2,8 @@ import btnScroll from "./dom/boton_scroll.js";
 import countdown from "./dom/cuenta_regresiva.js";
 import dispositivesDetect from "./dom/deteccion_dispositivos.js";
 import connection from "./dom/deteccion_red.js";
+import webCam from "./dom/deteccion_webcam.js";
+import geolocation from "./dom/geolocalizacion.js";
 import hamburgerMenu from "./dom/menu-hamburguesa.js";
 import darkMode from "./dom/modo_oscuro.js";
 import responsiveJS from "./dom/objeto_responsive.js";
@@ -35,4 +37,15 @@ d.addEventListener("DOMContentLoaded", (e) => {
   dispositivesDetect("user-device");
 
   connection("online", "offline");
+
+  webCam("cam")
+
+  geolocation("ubication")
 });
+
+//const $search = d.getElementById("search")
+
+/* 
+d.addEventListener("keyup", e => {
+  d.getElementById("copia").textContent = $search.value
+}) */
