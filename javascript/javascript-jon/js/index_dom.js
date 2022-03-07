@@ -3,6 +3,7 @@ import countdown from "./dom/cuenta_regresiva.js";
 import dispositivesDetect from "./dom/deteccion_dispositivos.js";
 import connection from "./dom/deteccion_red.js";
 import webCam from "./dom/deteccion_webcam.js";
+import filterSearch from "./dom/filtros_busqueda.js";
 import geolocation from "./dom/geolocalizacion.js";
 import hamburgerMenu from "./dom/menu-hamburguesa.js";
 import darkMode from "./dom/modo_oscuro.js";
@@ -41,6 +42,8 @@ d.addEventListener("DOMContentLoaded", (e) => {
   webCam("cam")
 
   geolocation("ubication")
+
+  filterSearch(".text-card", ".card", ".cards", "search")
 });
 
 //const $search = d.getElementById("search")
