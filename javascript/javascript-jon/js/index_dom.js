@@ -5,7 +5,7 @@ import connection from "./dom/deteccion_red.js";
 import webCam from "./dom/deteccion_webcam.js";
 import filterSearch from "./dom/filtros_busqueda.js";
 import geolocation from "./dom/geolocalizacion.js";
-import hamburgerMenu from "./dom/menu-hamburguesa.js";
+import hamburgerMenu from "./dom/menu_hamburguesa.js";
 import darkMode from "./dom/modo_oscuro.js";
 import responsiveJS from "./dom/objeto_responsive.js";
 import responsiveTest from "./dom/prueba_responsive.js";
@@ -39,11 +39,11 @@ d.addEventListener("DOMContentLoaded", (e) => {
 
   connection("online", "offline");
 
-  webCam("cam")
+  webCam("cam");
 
-  geolocation("ubication")
+  geolocation("ubication");
 
-  filterSearch(".text-card", ".card", ".cards", "search")
+  filterSearch(".text-card", "search");
 });
 
 //const $search = d.getElementById("search")
