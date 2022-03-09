@@ -3,12 +3,14 @@ import countdown from "./dom/cuenta_regresiva_jon.js";
 import userDeviceInfo from "./dom/deteccion_dispositivos_jon.js";
 import networkStatus from "./dom/deteccion_red_jon.js";
 import webCam from "./dom/deteccion_webcam_jon.js";
+import searchFilters from "./dom/filtros_busqueda_jon.js";
 import getGeolocation from "./dom/geolocalizacion_jon.js";
-import hamburgerMenu from "./dom/menu-hamburguesa-jon.js";
+import hamburgerMenu from "./dom/menu_hamburguesa_jon.js";
 import { darkTheme } from "./dom/modo_oscuro_jon.js";
 //import responsiveMedia from "./dom/objeto_responsive_jon.js";
 import responsiveTester from "./dom/prueba_responsive_jon.js";
 import { digitalClock, alarm } from "./dom/reloj-jon.js";
+import draw from "./dom/sorteo_jon.js";
 import { moveBall, shortcuts } from "./dom/teclado_jon.js";
 
 const d = document;
@@ -67,6 +69,10 @@ d.addEventListener("DOMContentLoaded", (e) => {
   webCam("webcam");
 
   getGeolocation("geolocation");
+
+  searchFilters(".card-filter", ".card");
+
+  draw("#winner-btn", ".player");
 });
 
 d.addEventListener("keydown", (e) => {
