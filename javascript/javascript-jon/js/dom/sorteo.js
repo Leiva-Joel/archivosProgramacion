@@ -1,10 +1,8 @@
 const d = document;
 
 export default function digitalRaffle(selector, btn, players) {
-  const $ul = d.querySelector(selector);
-
   players.forEach((el) => {
-    $ul.innerHTML += `<li>${el}</li>`;
+    d.querySelector(selector).innerHTML += `<li>${el}</li>`;
   });
 
   d.addEventListener("click", (e) => {
