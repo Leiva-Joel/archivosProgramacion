@@ -18,7 +18,8 @@ export default function draw(btn, selector) {
   });
 }
 
-const getWinnerComment = (selector) => {
+/*
+  const getWinnerComment = (selector) => {
   const $players = document.querySelectorAll(selector),
     random = Math.floor(Math.random() * $players.length),
     winner = $players[random];
@@ -27,3 +28,4 @@ const getWinnerComment = (selector) => {
 };
 
 getWinnerComment("ytd-comment-thread-renderer #author-text span");
+*/

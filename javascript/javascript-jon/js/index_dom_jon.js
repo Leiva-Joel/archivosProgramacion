@@ -1,4 +1,5 @@
 import scrollTopButton from "./dom/boton_scroll_jon.js";
+import slider from "./dom/carrusel_jon.js";
 import countdown from "./dom/cuenta_regresiva_jon.js";
 import userDeviceInfo from "./dom/deteccion_dispositivos_jon.js";
 import networkStatus from "./dom/deteccion_red_jon.js";
@@ -73,6 +74,8 @@ d.addEventListener("DOMContentLoaded", (e) => {
   searchFilters(".card-filter", ".card");
 
   draw("#winner-btn", ".player");
+
+  slider();
 });
 
 d.addEventListener("keydown", (e) => {

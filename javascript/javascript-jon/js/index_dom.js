@@ -1,4 +1,5 @@
 import btnScroll from "./dom/boton_scroll.js";
+import sliderResponsive from "./dom/carrusel.js";
 import countdown from "./dom/cuenta_regresiva.js";
 import dispositivesDetect from "./dom/deteccion_dispositivos.js";
 import connection from "./dom/deteccion_red.js";
@@ -57,6 +58,8 @@ d.addEventListener("DOMContentLoaded", (e) => {
     "Rust",
     "Perl",
   ]);
+
+  sliderResponsive();
 });
 
 //const $search = d.getElementById("search")
