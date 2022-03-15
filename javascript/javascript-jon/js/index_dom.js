@@ -11,6 +11,7 @@ import darkMode from "./dom/modo_oscuro.js";
 import responsiveJS from "./dom/objeto_responsive.js";
 import responsiveTest from "./dom/prueba_responsive.js";
 import { reloj, alarma } from "./dom/reloj.js";
+import spyMenu from "./dom/scroll_espia.js";
 import digitalRaffle from "./dom/sorteo.js";
 import { moveBall, shortcuts } from "./dom/teclado.js";
 
@@ -60,6 +61,7 @@ d.addEventListener("DOMContentLoaded", (e) => {
   ]);
 
   sliderResponsive();
+  spyMenu(".section");
 });
 
 //const $search = d.getElementById("search")

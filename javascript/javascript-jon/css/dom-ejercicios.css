@@ -365,13 +365,19 @@ video {
 @media screen and (min-width: 1024px) {
   body {
     display: grid;
-    grid-template-columns: max-content 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: "section menu";
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 4rem auto;
+    grid-template-areas: "header header", "main menu";
   }
 
-  .section {
-    grid-area: "section";
+  .header {
+    grid-area: "header";
+    position: fixed;
+    width: 100%;
+  }
+
+  main {
+    grid-area: "main";
   }
 
   .menu-icon {
@@ -387,6 +393,7 @@ video {
     z-index: 995;
     background-color: var(--second-color);
     grid-area: "menu";
+    border-left: medium solid var(--main-color);
   }
 
   .menu__link {
